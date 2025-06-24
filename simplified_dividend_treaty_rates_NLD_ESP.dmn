@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_01idlle" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="14b513a" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="simplified_dividend_treaty_rates_NLD_ESP_check" name="dividend_treaty_rates_NLD_ESP">
+    <informationRequirement id="InformationRequirement_0oy5kas">
+      <requiredInput href="#InputData_085liq5" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0p0p632">
+      <requiredInput href="#InputData_1six56h" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_02dv9s9">
+      <requiredInput href="#InputData_0p82qek" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1g62fbd">
+      <requiredDecision href="#Decision_kz6ou44" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1732lys">
+      <requiredInput href="#InputData_04vjp91" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_078kzyz">
+      <requiredInput href="#InputData_1nmmssb" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1wmyl8e" hitPolicy="FIRST">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>rResidence</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0b8jjei">
+        <inputExpression id="LiteralExpression_1v362iv" typeRef="string">
+          <text>pResidence</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0it5thn" label="rOwnershipPercentage">
+        <inputExpression id="LiteralExpression_0anoobw" typeRef="number">
+          <text>rOwnershipPercentage</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0gomm0v" label="pOther[nation]Owner">
+        <inputExpression id="LiteralExpression_1prdse1" typeRef="boolean">
+          <text>pOtherOwner</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0q1g0wn">
+        <inputExpression id="LiteralExpression_0ti753w" typeRef="boolean">
+          <text>pLegalPersonality</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0r7p04c">
+        <inputExpression id="LiteralExpression_0s3fa8a" typeRef="boolean">
+          <text>rLegalPersonality</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="treatyRateNLDESP" typeRef="string" />
+      <rule id="DecisionRule_0awj375">
+        <inputEntry id="UnaryTests_0x467b6">
+          <text>"ESP"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04actiy">
+          <text>"NLD"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16ekncp">
+          <text>&gt;=50</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jq6jm1">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fk0dr7">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tvbsh4">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0o53rdw">
+          <text>0.05</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ygjlkf">
+        <inputEntry id="UnaryTests_0ar1ie6">
+          <text>"ESP"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02j72uz">
+          <text>"NLD"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1c8dc2n">
+          <text>&gt;=25</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gjwk37">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0aquyky">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1887gqu">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ixjyx3">
+          <text>0.05</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nu6cqw">
+        <inputEntry id="UnaryTests_0ctz1bo">
+          <text>"NLD"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16r58to">
+          <text>"ESP"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00fqtvv">
+          <text>&gt;=50</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cxy12j">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ejiea7">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tyi364">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09bbdb4">
+          <text>0.10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ght0il">
+        <inputEntry id="UnaryTests_0sw1977">
+          <text>"NLD"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_082v8wa">
+          <text>"ESP"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jje74y">
+          <text>&gt;=25</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tux8oq">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19kt370">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ajbfj0">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09vmgs3">
+          <text>0.10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_09zz705">
+        <inputEntry id="UnaryTests_0n0idjw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_169t30a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ygotu0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nsrtv6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18rp39v">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dlwhke">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0p25bq5">
+          <text>0.15</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1r3lode">
+        <inputEntry id="UnaryTests_08pge3v">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1f52hei">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02dk4a4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0b6u7tc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ozttlt">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_076slxu">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ydcfl9">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_085liq5" name="pResidence" />
+  <inputData id="InputData_1six56h" name="rResidence" />
+  <inputData id="InputData_0p82qek" name="rOwnershipPercentage" />
+  <inputData id="InputData_1fjjn4f" name="pOwners" />
+  <decision id="Decision_kz6ou44" name="pOther[nld/esp]Owner">
+    <variable id="InformationItem_03rn7ll" name="pOtherOwner" typeRef="boolean" />
+    <informationRequirement id="InformationRequirement_02z4lcv">
+      <requiredInput href="#InputData_1fjjn4f" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0kj2ilw">
+      <requiredInput href="#InputData_1dsgfph" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1d2ox37">
+      <text>if pOwners[Ownership &gt;= 25 and Id != rId and residence ="ESP" or residence ="NLD" and Ownership &gt;= 25 and Id != rId] != [] then true else false</text>
+    </literalExpression>
+  </decision>
+  <inputData id="InputData_1dsgfph" name="rId" />
+  <inputData id="InputData_04vjp91" name="rLegalPersonality" />
+  <inputData id="InputData_1nmmssb" name="pLegalPersonality" />
+  <textAnnotation id="TextAnnotation_1gkedaz">
+    <text>array of all owners of the payor, including ownership percentage and ID, and residence</text>
+  </textAnnotation>
+  <association id="Association_1x3x9ex">
+    <sourceRef href="#TextAnnotation_1gkedaz" />
+    <targetRef href="#InputData_1fjjn4f" />
+  </association>
+  <textAnnotation id="TextAnnotation_136hsbf">
+    <text>entity id of recipient</text>
+  </textAnnotation>
+  <association id="Association_1l6i3uf">
+    <sourceRef href="#TextAnnotation_136hsbf" />
+    <targetRef href="#InputData_1dsgfph" />
+  </association>
+  <textAnnotation id="TextAnnotation_1x6mfrp">
+    <text>example json: {
+"pOwners":[
+{
+"Ownership":20,
+"id":"apel",
+"residence":"NLD"
+},
+{
+"Ownership":30,
+"id":"apel1",
+"residence":"ESP"
+}
+]
+}</text>
+  </textAnnotation>
+  <association id="Association_1l8bgoj">
+    <sourceRef href="#TextAnnotation_1x6mfrp" />
+    <targetRef href="#Decision_kz6ou44" />
+  </association>
+  <textAnnotation id="TextAnnotation_05yn7n9">
+    <text>needs fixing with new data structure</text>
+  </textAnnotation>
+  <association id="Association_0h772rn">
+    <sourceRef href="#TextAnnotation_05yn7n9" />
+    <targetRef href="#Decision_kz6ou44" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="simplified_dividend_treaty_rates_NLD_ESP_check">
+        <dc:Bounds height="80" width="180" x="530" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0vpgmnm" dmnElementRef="InputData_085liq5">
+        <dc:Bounds height="45" width="125" x="457" y="317" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0cr33c5" dmnElementRef="InformationRequirement_0oy5kas">
+        <di:waypoint x="520" y="317" />
+        <di:waypoint x="607" y="180" />
+        <di:waypoint x="607" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1spau84" dmnElementRef="InputData_1six56h">
+        <dc:Bounds height="45" width="125" x="596" y="317" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0qnamm3" dmnElementRef="InformationRequirement_0p0p632">
+        <di:waypoint x="659" y="317" />
+        <di:waypoint x="633" y="180" />
+        <di:waypoint x="633" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_126deqy" dmnElementRef="InputData_0p82qek">
+        <dc:Bounds height="45" width="125" x="727" y="317" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0cid4hg" dmnElementRef="InformationRequirement_02dv9s9">
+        <di:waypoint x="790" y="317" />
+        <di:waypoint x="659" y="180" />
+        <di:waypoint x="659" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0avdm93" dmnElementRef="InformationRequirement_1g62fbd">
+        <di:waypoint x="1030" y="300" />
+        <di:waypoint x="684" y="180" />
+        <di:waypoint x="684" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1y877kr" dmnElementRef="InputData_1fjjn4f">
+        <dc:Bounds height="45" width="125" x="967" y="537" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0vcsseo" dmnElementRef="InformationRequirement_02z4lcv">
+        <di:waypoint x="1030" y="537" />
+        <di:waypoint x="1000" y="400" />
+        <di:waypoint x="1000" y="380" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0gh1pzz" dmnElementRef="Decision_kz6ou44">
+        <dc:Bounds height="80" width="180" x="940" y="300" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1tq9f82" dmnElementRef="InputData_1dsgfph">
+        <dc:Bounds height="45" width="125" x="1207" y="537" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0r6br0m" dmnElementRef="InformationRequirement_0kj2ilw">
+        <di:waypoint x="1270" y="537" />
+        <di:waypoint x="1060" y="400" />
+        <di:waypoint x="1060" y="380" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1q04vn7" dmnElementRef="TextAnnotation_1gkedaz">
+        <dc:Bounds height="80" width="100" x="860" y="420" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1ynvqdj" dmnElementRef="Association_1x3x9ex">
+        <di:waypoint x="958" y="500" />
+        <di:waypoint x="1002" y="537" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_02ewz2z" dmnElementRef="TextAnnotation_136hsbf">
+        <dc:Bounds height="80" width="100" x="1332" y="407" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1pzbiku" dmnElementRef="Association_1l6i3uf">
+        <di:waypoint x="1342" y="487" />
+        <di:waypoint x="1293" y="537" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1b0qap8" dmnElementRef="TextAnnotation_1x6mfrp">
+        <dc:Bounds height="80" width="100" x="1120" y="170" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_03re204" dmnElementRef="Association_1l8bgoj">
+        <di:waypoint x="1127" y="250" />
+        <di:waypoint x="1073" y="300" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1b7ozsa" dmnElementRef="InputData_04vjp91">
+        <dc:Bounds height="45" width="125" x="177" y="317" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0o4jz8m" dmnElementRef="InformationRequirement_1732lys">
+        <di:waypoint x="240" y="317" />
+        <di:waypoint x="556" y="180" />
+        <di:waypoint x="556" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_008sbts" dmnElementRef="InputData_1nmmssb">
+        <dc:Bounds height="45" width="125" x="317" y="317" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_18ipd3u" dmnElementRef="InformationRequirement_078kzyz">
+        <di:waypoint x="380" y="317" />
+        <di:waypoint x="581" y="180" />
+        <di:waypoint x="581" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1xzppd3" dmnElementRef="TextAnnotation_05yn7n9">
+        <dc:Bounds height="80" width="100" x="1120" y="60" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1neb4fn" dmnElementRef="Association_0h772rn">
+        <di:waypoint x="1147" y="140" />
+        <di:waypoint x="1053" y="300" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

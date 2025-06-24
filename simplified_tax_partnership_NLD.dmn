@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_15y958z" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="0f88a1d" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="simplified_tax_partnership_NLD_check" name="tax_partnership_check_NLD">
+    <informationRequirement id="InformationRequirement_1dldns0">
+      <requiredInput href="#InputData_0k2931t" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0o391tt">
+      <requiredInput href="#InputData_0bbd9n6" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_14gu0am">
+      <requiredDecision href="#Decision_neqldmp" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0vi0kod" hitPolicy="PRIORITY">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="Any">
+          <text>rPartner</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1s5iosq">
+        <inputExpression id="LiteralExpression_1434tui" typeRef="Any">
+          <text>rSpouse</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_18h769p">
+        <inputExpression id="LiteralExpression_0o1nc0o" typeRef="Any">
+          <text>rPartnerTroughChildren</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="taxPartnerNLD" typeRef="Any" />
+      <rule id="DecisionRule_0rmki01">
+        <inputEntry id="UnaryTests_0ybgh11">
+          <text>rPartner != []</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sz0vih">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1m7d0b3">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ed9ezb">
+          <text>rPartner</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_16aomxu">
+        <inputEntry id="UnaryTests_0drao1t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00efygo">
+          <text>rSpouse != []</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qkhvrl">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dz67fv">
+          <text>rSpouse</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1rga6r8">
+        <inputEntry id="UnaryTests_1h77wso">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09ebutf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fn7by6">
+          <text>rPartnerTroughChildren != null or []</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03x39vs">
+          <text>rPartnerTroughChildren</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_15mp6cs">
+        <inputEntry id="UnaryTests_0nsi697">
+          <text>rPartner = []</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ifk3i2">
+          <text>rSpouse = []</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1w488s3">
+          <text>rPartnerTroughChildren = []</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1skm9as">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0k2931t" name="rPartner" />
+  <inputData id="InputData_0bbd9n6" name="rSpouse" />
+  <inputData id="InputData_0qqxbd1" name="rCohabitation" />
+  <inputData id="InputData_0gwni8q" name="rChildren" />
+  <decision id="Decision_kdnx1am" name="other parent check">
+    <variable id="InformationItem_15xlfot" name="rChildrenParents" />
+    <informationRequirement id="InformationRequirement_08ffwts">
+      <requiredInput href="#InputData_0gwni8q" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_0ucrdpc">
+      <text>flatten (for c in rChildren return if c.Parents != null then c.Parents else [])</text>
+    </literalExpression>
+  </decision>
+  <decision id="Decision_neqldmp" name="partnership trough children">
+    <variable id="InformationItem_0mf47gt" name="rPartnerTroughChildren" />
+    <informationRequirement id="InformationRequirement_15natoi">
+      <requiredInput href="#InputData_0qqxbd1" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_15ydjco">
+      <requiredDecision href="#Decision_kdnx1am" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_0848h9j">
+      <text>flatten(for c in rChildrenParents return if c.id = rCohabitation
+then 
+  {
+    "id":c.id,
+    "OwnershipPercentage":c.OwnershipPercentage
+  }
+   else [])</text>
+    </literalExpression>
+  </decision>
+  <textAnnotation id="TextAnnotation_0zupb7l">
+    <text>Cohabitation cases without children aren't modeled. If people are included in the model they are most likely partners</text>
+  </textAnnotation>
+  <association id="Association_0a774gu">
+    <sourceRef href="#TextAnnotation_0zupb7l" />
+    <targetRef href="#simplified_tax_partnership_NLD_check" />
+  </association>
+  <textAnnotation id="TextAnnotation_0cd781l">
+    <text>Id of person with whom the recipiënt lives</text>
+  </textAnnotation>
+  <association id="Association_0jqb84o">
+    <sourceRef href="#TextAnnotation_0cd781l" />
+    <targetRef href="#InputData_0qqxbd1" />
+  </association>
+  <textAnnotation id="TextAnnotation_0yahvwm">
+    <text>id's of children of the recipients</text>
+  </textAnnotation>
+  <association id="Association_16e0w7a">
+    <sourceRef href="#TextAnnotation_0yahvwm" />
+    <targetRef href="#InputData_0gwni8q" />
+  </association>
+  <textAnnotation id="TextAnnotation_1vtmz9u">
+    <text>take id of other parent out of child data</text>
+  </textAnnotation>
+  <association id="Association_1ax76se">
+    <sourceRef href="#TextAnnotation_1vtmz9u" />
+    <targetRef href="#Decision_kdnx1am" />
+  </association>
+  <textAnnotation id="TextAnnotation_111vh1r">
+    <text>restructure, not compatible with new data structure, see wiki</text>
+  </textAnnotation>
+  <association id="Association_0d7zhn8">
+    <sourceRef href="#TextAnnotation_111vh1r" />
+    <targetRef href="#Decision_kdnx1am" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="simplified_tax_partnership_NLD_check">
+        <dc:Bounds height="80" width="180" x="280" y="210" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1vuj1uq" dmnElementRef="InputData_0k2931t">
+        <dc:Bounds height="45" width="125" x="187" y="447" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_19z8vtm" dmnElementRef="InformationRequirement_1dldns0">
+        <di:waypoint x="250" y="447" />
+        <di:waypoint x="325" y="310" />
+        <di:waypoint x="325" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0ph1a9u" dmnElementRef="InputData_0bbd9n6">
+        <dc:Bounds height="45" width="125" x="337" y="447" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1sefsrc" dmnElementRef="InformationRequirement_0o391tt">
+        <di:waypoint x="400" y="447" />
+        <di:waypoint x="370" y="310" />
+        <di:waypoint x="370" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1hibj8h" dmnElementRef="TextAnnotation_0zupb7l">
+        <dc:Bounds height="50" width="420" x="460" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_08ersxi" dmnElementRef="Association_0a774gu">
+        <di:waypoint x="499" y="130" />
+        <di:waypoint x="413" y="210" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1d18vyb" dmnElementRef="InputData_0qqxbd1">
+        <dc:Bounds height="45" width="125" x="547" y="667" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1400asl" dmnElementRef="InformationRequirement_15natoi">
+        <di:waypoint x="610" y="667" />
+        <di:waypoint x="640" y="560" />
+        <di:waypoint x="640" y="540" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1ikb6d3" dmnElementRef="InputData_0gwni8q">
+        <dc:Bounds height="45" width="125" x="857" y="817" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0dmubih" dmnElementRef="TextAnnotation_0cd781l">
+        <dc:Bounds height="80" width="100" x="440" y="537" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1m14vqj" dmnElementRef="Association_0jqb84o">
+        <di:waypoint x="532" y="617" />
+        <di:waypoint x="586" y="667" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0rqzbp5" dmnElementRef="TextAnnotation_0yahvwm">
+        <dc:Bounds height="80" width="100" x="710" y="610" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1dvcv8s" dmnElementRef="Association_16e0w7a">
+        <di:waypoint x="794" y="690" />
+        <di:waypoint x="901" y="817" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0rkbsc9" dmnElementRef="InformationRequirement_08ffwts">
+        <di:waypoint x="920" y="817" />
+        <di:waypoint x="920" y="690" />
+        <di:waypoint x="920" y="670" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1g1v94q" dmnElementRef="InformationRequirement_15ydjco">
+        <di:waypoint x="920" y="590" />
+        <di:waypoint x="700" y="560" />
+        <di:waypoint x="700" y="540" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0cxmo00" dmnElementRef="TextAnnotation_1vtmz9u">
+        <dc:Bounds height="80" width="100" x="1010" y="460" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0zowqjx" dmnElementRef="Association_1ax76se">
+        <di:waypoint x="1017" y="540" />
+        <di:waypoint x="963" y="590" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1grdz52" dmnElementRef="Decision_kdnx1am">
+        <dc:Bounds height="80" width="180" x="830" y="590" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0dxg1wn" dmnElementRef="Decision_neqldmp">
+        <dc:Bounds height="80" width="180" x="580" y="460" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_00h7cnk" dmnElementRef="InformationRequirement_14gu0am">
+        <di:waypoint x="670" y="460" />
+        <di:waypoint x="415" y="310" />
+        <di:waypoint x="415" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0gtw3c7" dmnElementRef="TextAnnotation_111vh1r">
+        <dc:Bounds height="80" width="100" x="1010" y="350" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_08ywz2s" dmnElementRef="Association_0d7zhn8">
+        <di:waypoint x="1037" y="430" />
+        <di:waypoint x="943" y="590" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

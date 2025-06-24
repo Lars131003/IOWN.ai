@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Eligibility_PE_WHT_NLD_Check" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="24b1c55" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0">
+  <decision id="Simplified_PE_WHT_NLD_Check" name="Simplified_PE_WHT_NLD">
+    <informationRequirement id="InformationRequirement_01ndo4l">
+      <requiredInput href="#InputData_0vslxou" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0uxsi1g">
+      <requiredInput href="#InputData_0d4i9zs" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1u102h8" hitPolicy="FIRST">
+      <input id="Input_1" biodi:width="192">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>rRegulatoryStatus</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0yarwdu">
+          <text>"VBI"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0s5adkr">
+        <inputExpression id="LiteralExpression_0mosb5p" typeRef="number">
+          <text>rOwnershipPercentage</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="eligibilityParticipationExemptionNLDWHT" name="simplifiedPEWHTNLD" typeRef="boolean" />
+      <rule id="DecisionRule_0z59fdn">
+        <inputEntry id="UnaryTests_07fh0dt">
+          <text>not("VBI")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_102ourm">
+          <text>&gt;=5</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1onh7fe">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1pz1zx3">
+        <inputEntry id="UnaryTests_1sbw111">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cuqae6">
+          <text>&lt;5</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ybodju">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1au5uz5">
+        <inputEntry id="UnaryTests_0qrhd55">
+          <text>"VBI"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cs9l3k">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1596p38">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0vslxou" name="rOwnershipPercentage" />
+  <inputData id="InputData_0d4i9zs" name="rRegulatoryStatus" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Simplified_PE_WHT_NLD_Check">
+        <dc:Bounds height="80" width="180" x="230" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1700vdh" dmnElementRef="InputData_0vslxou">
+        <dc:Bounds height="45" width="125" x="467" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_15mktjh" dmnElementRef="InformationRequirement_01ndo4l">
+        <di:waypoint x="530" y="337" />
+        <di:waypoint x="350" y="200" />
+        <di:waypoint x="350" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0j370td" dmnElementRef="InputData_0d4i9zs">
+        <dc:Bounds height="45" width="125" x="157" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_10wn9g1" dmnElementRef="InformationRequirement_0uxsi1g">
+        <di:waypoint x="220" y="337" />
+        <di:waypoint x="290" y="200" />
+        <di:waypoint x="290" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

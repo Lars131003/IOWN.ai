@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="b08e09c" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <bpmn:process id="simplified_recipient_qualifies" name="simplified recipient qualifies" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_19ff0n8</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_1mzxy2u">
+      <bpmn:incoming>Flow_0wembh3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qzqi3u</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1yc1dfa</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1qzqi3u" sourceRef="Gateway_1mzxy2u" targetRef="Activity_0xc5fx7">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rEntityTypeQualifies= "recipient is a qualifying entity for WHT AA"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_1d8b3hw">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="=&#34;recipient is a qualifying entity for WHT AA&#34;" target="rSimplifiedWHTAAQualifies" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_047mu8c</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_15027de">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="=&#34;recipient doesn&#39;t qualify for WHT AA, because enity is transparent or a natural person&#34;" target="rSimplifiedWHTAAQualifies" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1vawhif</bpmn:incoming>
+      <bpmn:incoming>Flow_1yc1dfa</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_1ooy5ul">
+      <bpmn:incoming>Flow_18vyeo1</bpmn:incoming>
+      <bpmn:outgoing>Flow_047mu8c</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1vawhif</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_18vyeo1" sourceRef="Activity_0xc5fx7" targetRef="Gateway_1ooy5ul" />
+    <bpmn:sequenceFlow id="Flow_047mu8c" sourceRef="Gateway_1ooy5ul" targetRef="Event_1d8b3hw">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rControlAA = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1vawhif" sourceRef="Gateway_1ooy5ul" targetRef="Event_15027de">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rControlAA = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1yc1dfa" sourceRef="Gateway_1mzxy2u" targetRef="Event_15027de">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rEntityTypeQualifies= "recipient doesn't qualify for WHT AA, because enity is transparent or a natural person"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:callActivity id="Activity_0xc5fx7" name="payor &#34;controls&#34; recipient">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="direct_indirect_ownership_AA_simplified" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1qzqi3u</bpmn:incoming>
+      <bpmn:outgoing>Flow_18vyeo1</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_19ff0n8" sourceRef="StartEvent_1" targetRef="Activity_1gp4vbk" />
+    <bpmn:sequenceFlow id="Flow_0wembh3" sourceRef="Activity_1gp4vbk" targetRef="Gateway_1mzxy2u" />
+    <bpmn:scriptTask id="Activity_1gp4vbk" name="entity type qualifies">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=if rEnitityQualificationNLD= &#34;Liable for Corporation Tax&#34; then &#34;recipient is a qualifying entity for WHT AA&#34;&#10;else &#34;recipient doesn&#39;t qualify for WHT AA, because enity is transparent or a natural person&#34;" resultVariable="rEntityTypeQualifies" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_19ff0n8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wembh3</bpmn:outgoing>
+    </bpmn:scriptTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="simplified_recipient_qualifies">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1mzxy2u_di" bpmnElement="Gateway_1mzxy2u" isMarkerVisible="true">
+        <dc:Bounds x="395" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1d8b3hw_di" bpmnElement="Event_1d8b3hw">
+        <dc:Bounds x="792" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_15027de_di" bpmnElement="Event_15027de">
+        <dc:Bounds x="792" y="212" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1ooy5ul_di" bpmnElement="Gateway_1ooy5ul" isMarkerVisible="true">
+        <dc:Bounds x="675" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1onep5k_di" bpmnElement="Activity_0xc5fx7">
+        <dc:Bounds x="500" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rhqkxb_di" bpmnElement="Activity_1gp4vbk">
+        <dc:Bounds x="240" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1qzqi3u_di" bpmnElement="Flow_1qzqi3u">
+        <di:waypoint x="445" y="118" />
+        <di:waypoint x="500" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18vyeo1_di" bpmnElement="Flow_18vyeo1">
+        <di:waypoint x="600" y="118" />
+        <di:waypoint x="675" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_047mu8c_di" bpmnElement="Flow_047mu8c">
+        <di:waypoint x="725" y="118" />
+        <di:waypoint x="792" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vawhif_di" bpmnElement="Flow_1vawhif">
+        <di:waypoint x="700" y="143" />
+        <di:waypoint x="700" y="230" />
+        <di:waypoint x="792" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yc1dfa_di" bpmnElement="Flow_1yc1dfa">
+        <di:waypoint x="420" y="143" />
+        <di:waypoint x="420" y="230" />
+        <di:waypoint x="792" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19ff0n8_di" bpmnElement="Flow_19ff0n8">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="240" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wembh3_di" bpmnElement="Flow_0wembh3">
+        <di:waypoint x="340" y="118" />
+        <di:waypoint x="395" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="EUEER_residence_check" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="6e26945" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0">
+  <decision id="EUEER_residence_Simplified_check" name="EU/EER_residence">
+    <informationRequirement id="InformationRequirement_1g16j45">
+      <requiredInput href="#recipientresidence" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_03fkr9n">
+      <input id="InputClause_03k23x3">
+        <inputExpression id="LiteralExpression_146mvvf" typeRef="string">
+          <text>rResidence</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0c1lik7">
+          <text>"AUT","BEL","BGR","HVR","CYP","CZE","DNK","EST","FIN","FRA","DEU","GRC","HUN","IRL","ITA","LVA","LTU","LUX","MLT","NLD","POL","PRT","ROU","SVK","SVN","ESP","SWE","LIE","ISL","NOR"</text>
+        </inputValues>
+      </input>
+      <output id="OutputClause_1rlm33b" name="rResidentEUEER" typeRef="boolean" />
+      <rule id="DecisionRule_1ms3umk">
+        <description>Alpha-3 nation codes</description>
+        <inputEntry id="UnaryTests_1fhip6m">
+          <text>"AUT"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1iya8mq">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0gpom2c">
+        <inputEntry id="UnaryTests_0w4utjp">
+          <text>"BEL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03ww6yg">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_00iwlhh">
+        <inputEntry id="UnaryTests_1jvfnyu">
+          <text>"BGR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bfo0n2">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0r7n8j0">
+        <inputEntry id="UnaryTests_159b76q">
+          <text>"HVR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_19mxw7o">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1xajk01">
+        <inputEntry id="UnaryTests_18kmt4p">
+          <text>"CYP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0oun4lb">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1dsy4l2">
+        <inputEntry id="UnaryTests_1igfwsv">
+          <text>"CZE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0u7d6un">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0bh2zet">
+        <inputEntry id="UnaryTests_1ds9u32">
+          <text>"DNK"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ioog8b">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10ck7dn">
+        <inputEntry id="UnaryTests_0bj3euv">
+          <text>"EST"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0r37v4h">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0oiraav">
+        <inputEntry id="UnaryTests_0on6mj7">
+          <text>"FIN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vog30a">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1jc8zh5">
+        <inputEntry id="UnaryTests_0suondk">
+          <text>"FRA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qizdh3">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1k251gt">
+        <inputEntry id="UnaryTests_0igbdi0">
+          <text>"DEU"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ibdiwu">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0sni8gc">
+        <inputEntry id="UnaryTests_1ja5hqi">
+          <text>"GRC"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ke5yka">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07y2mab">
+        <inputEntry id="UnaryTests_0nd5azl">
+          <text>"HUN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14p086k">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0by2oza">
+        <inputEntry id="UnaryTests_1yya2yv">
+          <text>"IRL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_12v7c13">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ka6rah">
+        <inputEntry id="UnaryTests_1mf70i2">
+          <text>"ITA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1eqg1ni">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1117ie9">
+        <inputEntry id="UnaryTests_1i972vp">
+          <text>"LVA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dp3bgb">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0z0zaex">
+        <inputEntry id="UnaryTests_19wg5wa">
+          <text>"LTU"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1xp5q6z">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0lcxvmv">
+        <inputEntry id="UnaryTests_1ky92cp">
+          <text>"LUX"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15xdyw9">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0wf8375">
+        <inputEntry id="UnaryTests_1wtl3hl">
+          <text>"MLT"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bh5p1t">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_180lsdb">
+        <inputEntry id="UnaryTests_0icopor">
+          <text>"NLD"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0p8lbf6">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0w47pz4">
+        <inputEntry id="UnaryTests_0r2t0fh">
+          <text>"POL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_01emp5u">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nwew1r">
+        <inputEntry id="UnaryTests_1berh0y">
+          <text>"PRT"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ir8cz3">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10jz974">
+        <inputEntry id="UnaryTests_0x7c7dv">
+          <text>"ROU"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1372liv">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0z213jv">
+        <inputEntry id="UnaryTests_0e0k9sx">
+          <text>"SVK"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0uw2a0w">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05gg3rn">
+        <inputEntry id="UnaryTests_0lt3kul">
+          <text>"SVN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0l5e71z">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0vfzyib">
+        <inputEntry id="UnaryTests_0fpol1c">
+          <text>"ESP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1axgqhp">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1lk41w4">
+        <inputEntry id="UnaryTests_0wgb5vt">
+          <text>"SWE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0eqkcop">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0f3uebm">
+        <inputEntry id="UnaryTests_1jnc7zr">
+          <text>"LIE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1nmtf8t">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0chcwc0">
+        <inputEntry id="UnaryTests_0mtb1no">
+          <text>"ISL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11g8apu">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1adqugj">
+        <inputEntry id="UnaryTests_0gkftye">
+          <text>"NOR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kz8f4j">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03lr1n6">
+        <description></description>
+        <inputEntry id="UnaryTests_0wkpkkb">
+          <text>not("AUT","BEL","BGR","HVR","CYP","CZE","DNK","EST","FIN","FRA","DEU","GRC","HUN","IRL","ITA","LVA","LTU","LUX","MLT","NLD","POL","PRT","ROU","SVK","SVN","ESP","SWE","LIE","ISL","NOR")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dznfdz">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="recipientresidence" name="rResidence" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="DMNShape_04ngz68" dmnElementRef="EUEER_residence_Simplified_check">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1chplnu" dmnElementRef="recipientresidence">
+        <dc:Bounds height="45" width="125" x="187" y="317" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1616yrp" dmnElementRef="InformationRequirement_1g16j45">
+        <di:waypoint x="250" y="317" />
+        <di:waypoint x="250" y="180" />
+        <di:waypoint x="250" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

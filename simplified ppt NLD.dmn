@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1czfep7" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="2c23077" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="simplified_ppt_NLD" name="simplified ppt NLD">
+    <informationRequirement id="InformationRequirement_11aegth">
+      <requiredInput href="#InputData_1bj2asr" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_13lg6bx">
+      <requiredInput href="#InputData_1cvms4d" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_135ktfb">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>rSubstance</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_13g9k67">
+        <inputExpression id="LiteralExpression_0tcrgad" typeRef="boolean">
+          <text>rPrinciplePurpose</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="rPPTNLD" typeRef="string" />
+      <rule id="DecisionRule_1hfff98">
+        <inputEntry id="UnaryTests_18z1jyl">
+          <text>"High"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1an8s8y">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_13btt1j">
+          <text>"Principle purpose is business, high substance"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07z2ega">
+        <inputEntry id="UnaryTests_0skn7uw">
+          <text>"Medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gdodkf">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hcellq">
+          <text>"Principle purpose is business, medium substance, check substance"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1h5naqa">
+        <inputEntry id="UnaryTests_06au476">
+          <text>"Low"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wm57cg">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_19nf77h">
+          <text>"Principle purpose is business, low substance, watch out for substance"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0dakrqh">
+        <inputEntry id="UnaryTests_0v04cze">
+          <text>"High"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gy3r56">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ko4e2x">
+          <text>"Principle purpose is avoidance, high substance"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1o3eubt">
+        <inputEntry id="UnaryTests_09ui3qr">
+          <text>"Medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10zis60">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bdrbku">
+          <text>"Principle purpose is avoidance, medium substance, check substance"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1pdnsfe">
+        <inputEntry id="UnaryTests_1r5jcy6">
+          <text>"Low"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04q0cdj">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11221nc">
+          <text>"Principle purpose is avoidance, low substance, watch out for substance"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1bj2asr" name="rPrinciplePurpose" />
+  <inputData id="InputData_1cvms4d" name="rSubstance" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="simplified_ppt_NLD">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_01jxf08" dmnElementRef="InputData_1bj2asr">
+        <dc:Bounds height="45" width="125" x="187" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_00coj3h" dmnElementRef="InformationRequirement_11aegth">
+        <di:waypoint x="250" y="337" />
+        <di:waypoint x="220" y="200" />
+        <di:waypoint x="220" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1yqeib8" dmnElementRef="InputData_1cvms4d">
+        <dc:Bounds height="45" width="125" x="427" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1gvavoq" dmnElementRef="InformationRequirement_13lg6bx">
+        <di:waypoint x="490" y="337" />
+        <di:waypoint x="280" y="200" />
+        <di:waypoint x="280" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="22173ef" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <bpmn:process id="Simplified_Recipient_Tax_NLD_BPMN" name="Simplified Recipient Tax NLD" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1ahqu1r</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1ahqu1r" sourceRef="StartEvent_1" targetRef="Activity_0699h0c" />
+    <bpmn:exclusiveGateway id="Gateway_0zxc9wd">
+      <bpmn:incoming>Flow_003my9e</bpmn:incoming>
+      <bpmn:outgoing>Flow_1sg6dj4</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1ihxdgx</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1hbap82</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_003my9e" sourceRef="Activity_0699h0c" targetRef="Gateway_0zxc9wd" />
+    <bpmn:endEvent id="Event_1b3olsv">
+      <bpmn:incoming>Flow_1c0ai3s</bpmn:incoming>
+      <bpmn:incoming>Flow_06bxkt6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1sg6dj4" sourceRef="Gateway_0zxc9wd" targetRef="Activity_17quv2h">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rEligibilityDutchTax = true and rEntityType != "Natural_Person"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1c0ai3s" sourceRef="Activity_17quv2h" targetRef="Event_1b3olsv" />
+    <bpmn:sequenceFlow id="Flow_1ihxdgx" sourceRef="Gateway_0zxc9wd" targetRef="Activity_0d2gmyl">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rEligibilityDutchTax = true and rEnitityQualificationNLD= "Liable for Income Tax"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_06bxkt6" sourceRef="Activity_0d2gmyl" targetRef="Event_1b3olsv" />
+    <bpmn:businessRuleTask id="Activity_0699h0c" name="eligibility Dutch tax">
+      <bpmn:extensionElements>
+        <zeebe:calledDecision decisionId="simplified_residence_check_dutch_recipient" resultVariable="rEligibilityDutchTax" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ahqu1r</bpmn:incoming>
+      <bpmn:outgoing>Flow_003my9e</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:endEvent id="Event_19618j0">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="=&#34;No dutch tax liablity entity isn&#39;t resident of the Netherlands&#34;" target="NotificationNoDutchTax" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1hbap82</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1hbap82" sourceRef="Gateway_0zxc9wd" targetRef="Event_19618j0">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rEligibilityDutchTax = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:callActivity id="Activity_0d2gmyl" name="income tax">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="Simplified_Income_Tax_NLD" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ihxdgx</bpmn:incoming>
+      <bpmn:outgoing>Flow_06bxkt6</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_17quv2h" name="corporate tax">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="Simplified_corporate_tax_NLD_dutch_residents" propagateAllChildVariables="false" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1sg6dj4</bpmn:incoming>
+      <bpmn:outgoing>Flow_1c0ai3s</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:textAnnotation id="TextAnnotation_1beaka5">
+      <bpmn:text>processed serial, because of the way tax relief is granted</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0c7m954" associationDirection="None" sourceRef="Activity_17quv2h" targetRef="TextAnnotation_1beaka5" />
+    <bpmn:textAnnotation id="TextAnnotation_0evnkco">
+      <bpmn:text>covers local taxes for residents</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_12ibb0f" associationDirection="None" sourceRef="StartEvent_1" targetRef="TextAnnotation_0evnkco" />
+    <bpmn:textAnnotation id="TextAnnotation_023rknv">
+      <bpmn:text>No Dutch tax</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1wye96r" associationDirection="None" sourceRef="Flow_1hbap82" targetRef="TextAnnotation_023rknv" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Simplified_Recipient_Tax_NLD_BPMN">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0zxc9wd_di" bpmnElement="Gateway_0zxc9wd" isMarkerVisible="true">
+        <dc:Bounds x="395" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1b3olsv_di" bpmnElement="Event_1b3olsv">
+        <dc:Bounds x="842" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1flj7hp_di" bpmnElement="Activity_0699h0c">
+        <dc:Bounds x="240" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_19618j0_di" bpmnElement="Event_19618j0">
+        <dc:Bounds x="842" y="322" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0c88uob_di" bpmnElement="Activity_0d2gmyl">
+        <dc:Bounds x="580" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1s89qsg_di" bpmnElement="Activity_17quv2h">
+        <dc:Bounds x="580" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1beaka5_di" bpmnElement="TextAnnotation_1beaka5">
+        <dc:Bounds x="660" y="-50" width="100" height="68" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0evnkco_di" bpmnElement="TextAnnotation_0evnkco">
+        <dc:Bounds x="118" y="-29" width="100" height="54" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_023rknv_di" bpmnElement="TextAnnotation_023rknv">
+        <dc:Bounds x="580" y="290" width="100" height="30" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1ahqu1r_di" bpmnElement="Flow_1ahqu1r">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="240" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_003my9e_di" bpmnElement="Flow_003my9e">
+        <di:waypoint x="340" y="118" />
+        <di:waypoint x="395" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1sg6dj4_di" bpmnElement="Flow_1sg6dj4">
+        <di:waypoint x="445" y="118" />
+        <di:waypoint x="580" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1c0ai3s_di" bpmnElement="Flow_1c0ai3s">
+        <di:waypoint x="680" y="118" />
+        <di:waypoint x="842" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ihxdgx_di" bpmnElement="Flow_1ihxdgx">
+        <di:waypoint x="420" y="143" />
+        <di:waypoint x="420" y="230" />
+        <di:waypoint x="580" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06bxkt6_di" bpmnElement="Flow_06bxkt6">
+        <di:waypoint x="680" y="230" />
+        <di:waypoint x="760" y="230" />
+        <di:waypoint x="760" y="118" />
+        <di:waypoint x="842" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hbap82_di" bpmnElement="Flow_1hbap82">
+        <di:waypoint x="420" y="143" />
+        <di:waypoint x="420" y="340" />
+        <di:waypoint x="842" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0c7m954_di" bpmnElement="Association_0c7m954">
+        <di:waypoint x="654" y="78" />
+        <di:waypoint x="690" y="18" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_12ibb0f_di" bpmnElement="Association_12ibb0f">
+        <di:waypoint x="168" y="100" />
+        <di:waypoint x="168" y="25" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1wye96r_di" bpmnElement="Association_1wye96r">
+        <di:waypoint x="535" y="340" />
+        <di:waypoint x="590" y="320" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

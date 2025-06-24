@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="9f45323" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <bpmn:process id="simplified_non_resident_taxation_dutch_income" name="Non resident taxation dutch income" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_06j59wo</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_1f8my2k">
+      <bpmn:incoming>Flow_06j59wo</bpmn:incoming>
+      <bpmn:outgoing>Flow_0t9glq9</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0s8l70d</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_06j59wo" sourceRef="StartEvent_1" targetRef="Gateway_1f8my2k" />
+    <bpmn:sequenceFlow id="Flow_0t9glq9" sourceRef="Gateway_1f8my2k" targetRef="Activity_0h00mhl">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rEnitityQualificationNLD = "Liable for Income Tax"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0s8l70d" sourceRef="Gateway_1f8my2k" targetRef="Activity_02luily">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rEnitityQualificationNLD= "Liable for Corporation Tax"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_0pqnqno">
+      <bpmn:incoming>Flow_1268q41</bpmn:incoming>
+      <bpmn:incoming>Flow_1lynek0</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1268q41" sourceRef="Activity_0h00mhl" targetRef="Event_0pqnqno" />
+    <bpmn:sequenceFlow id="Flow_1lynek0" sourceRef="Activity_02luily" targetRef="Event_0pqnqno" />
+    <bpmn:scriptTask id="Activity_02luily" name="Not modelled in MVP (technical SI) or Share are part of permanent establishment">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=&#34;Corporate Income tax not modelled for non resident recipients. Dividend income could be atributed to a permanent establishment or a technical substantial intrest. Consult a tax advisor&#34;" resultVariable="Income tax non resident recipient" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0s8l70d</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lynek0</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:callActivity id="Activity_0h00mhl" name="income tax non resident recipient">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="simplified_dutch_income_foreign_recipient_income_tax" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0t9glq9</bpmn:incoming>
+      <bpmn:outgoing>Flow_1268q41</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:textAnnotation id="TextAnnotation_17jfuez">
+      <bpmn:text>income tax non resident recipient</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_00ch4qb" associationDirection="None" sourceRef="Flow_0t9glq9" targetRef="TextAnnotation_17jfuez" />
+    <bpmn:textAnnotation id="TextAnnotation_1fhztrj">
+      <bpmn:text>corporate tax non resident recipient</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0aav0nj" associationDirection="None" sourceRef="Flow_0s8l70d" targetRef="TextAnnotation_1fhztrj" />
+    <bpmn:textAnnotation id="TextAnnotation_0yb7rwt">
+      <bpmn:text>add disclaimer TSI and PA</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0rc9ex0" associationDirection="None" sourceRef="Activity_02luily" targetRef="TextAnnotation_0yb7rwt" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="simplified_non_resident_taxation_dutch_income">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1f8my2k_di" bpmnElement="Gateway_1f8my2k" isMarkerVisible="true">
+        <dc:Bounds x="245" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0pqnqno_di" bpmnElement="Event_0pqnqno">
+        <dc:Bounds x="532" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1c07jgv_di" bpmnElement="Activity_02luily">
+        <dc:Bounds x="360" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16ayok0_di" bpmnElement="Activity_0h00mhl">
+        <dc:Bounds x="360" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0rc9ex0_di" bpmnElement="Association_0rc9ex0">
+        <di:waypoint x="460" y="249" />
+        <di:waypoint x="570" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_17jfuez_di" bpmnElement="TextAnnotation_17jfuez">
+        <dc:Bounds x="278" y="-10" width="100" height="54" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1fhztrj_di" bpmnElement="TextAnnotation_1fhztrj">
+        <dc:Bounds x="222" y="350" width="100" height="54" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_06j59wo_di" bpmnElement="Flow_06j59wo">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="245" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0t9glq9_di" bpmnElement="Flow_0t9glq9">
+        <di:waypoint x="295" y="118" />
+        <di:waypoint x="360" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0s8l70d_di" bpmnElement="Flow_0s8l70d">
+        <di:waypoint x="270" y="143" />
+        <di:waypoint x="270" y="230" />
+        <di:waypoint x="360" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1268q41_di" bpmnElement="Flow_1268q41">
+        <di:waypoint x="460" y="118" />
+        <di:waypoint x="532" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lynek0_di" bpmnElement="Flow_1lynek0">
+        <di:waypoint x="460" y="230" />
+        <di:waypoint x="496" y="230" />
+        <di:waypoint x="496" y="118" />
+        <di:waypoint x="532" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_00ch4qb_di" bpmnElement="Association_00ch4qb">
+        <di:waypoint x="328" y="118" />
+        <di:waypoint x="328" y="44" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0aav0nj_di" bpmnElement="Association_0aav0nj">
+        <di:waypoint x="272" y="230" />
+        <di:waypoint x="272" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0yb7rwt_di" bpmnElement="TextAnnotation_0yb7rwt">
+        <dc:Bounds x="560" y="290" width="100" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

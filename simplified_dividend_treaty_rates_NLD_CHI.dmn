@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_0zyykev" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="14b513a" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="simplified_dividend_treaty_rates_NLD_CHI" name="dividend treaty rates NLD CHI">
+    <informationRequirement id="InformationRequirement_14qxb2n">
+      <requiredInput href="#InputData_0m2dn0t" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1w4m3kc">
+      <requiredInput href="#InputData_1napjcg" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1i5ay3d">
+      <requiredInput href="#InputData_0quor2a" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1f33k5o" hitPolicy="FIRST">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="number">
+          <text>rOwnershippercentage</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_07tb2j5">
+        <inputExpression id="LiteralExpression_0wisvuy" typeRef="boolean">
+          <text>rLegalPersonality</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1o487ir" biodi:width="192">
+        <inputExpression id="LiteralExpression_1xrr3x4" typeRef="boolean">
+          <text>pLegalPersonality</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="treatyRateNLDCHI" typeRef="number" />
+      <rule id="DecisionRule_1hor24n">
+        <inputEntry id="UnaryTests_1gjkybk">
+          <text>&gt;=25</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1p24svm">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0541oa5">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_133ilqa">
+          <text>.05</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_064r3jx">
+        <inputEntry id="UnaryTests_19l50om">
+          <text>&lt;25</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1148uxl">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0v61dod">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1v113ua">
+          <text>.10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_11o1dl1">
+        <inputEntry id="UnaryTests_0fsy3z6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ary2uh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kp7a7b">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ffd8m0">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0m2dn0t" name="rLegalPersonality" />
+  <inputData id="InputData_1napjcg" name="pLegalPersonality" />
+  <inputData id="InputData_0quor2a" name="rOwnershippercentage" />
+  <textAnnotation id="TextAnnotation_1ome28v">
+    <text>no treaty rate for partnerships and similar</text>
+  </textAnnotation>
+  <association id="Association_16o2rr7">
+    <sourceRef href="#TextAnnotation_1ome28v" />
+    <targetRef href="#simplified_dividend_treaty_rates_NLD_CHI" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="simplified_dividend_treaty_rates_NLD_CHI">
+        <dc:Bounds height="80" width="180" x="310" y="210" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1ef0lly" dmnElementRef="TextAnnotation_1ome28v">
+        <dc:Bounds height="80" width="100" x="490" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1qqlsvb" dmnElementRef="Association_16o2rr7">
+        <di:waypoint x="497" y="160" />
+        <di:waypoint x="443" y="210" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_103pdkd" dmnElementRef="InputData_0m2dn0t">
+        <dc:Bounds height="45" width="125" x="517" y="447" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0ihgxoe" dmnElementRef="InformationRequirement_14qxb2n">
+        <di:waypoint x="580" y="447" />
+        <di:waypoint x="445" y="310" />
+        <di:waypoint x="445" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0tli3t4" dmnElementRef="InputData_1napjcg">
+        <dc:Bounds height="45" width="125" x="157" y="447" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_090gkx4" dmnElementRef="InformationRequirement_1w4m3kc">
+        <di:waypoint x="220" y="447" />
+        <di:waypoint x="355" y="310" />
+        <di:waypoint x="355" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1c3yx74" dmnElementRef="InputData_0quor2a">
+        <dc:Bounds height="45" width="125" x="337" y="447" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1cbzozg" dmnElementRef="InformationRequirement_1i5ay3d">
+        <di:waypoint x="400" y="447" />
+        <di:waypoint x="400" y="310" />
+        <di:waypoint x="400" y="290" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

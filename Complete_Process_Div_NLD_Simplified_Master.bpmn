@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="8d36a4d" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <bpmn:process id="Complete_Process_Div_NLD_Simplified_Master" name="Complete_Process_Div_NLD_Simplified_Master" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0fh5455</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1v8zs0k" sourceRef="Activity_1txnauk" targetRef="Activity_0n790n3" />
+    <bpmn:endEvent id="Event_0khedm5">
+      <bpmn:incoming>Flow_19w53wj</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_19w53wj" sourceRef="Activity_0n790n3" targetRef="Event_0khedm5" />
+    <bpmn:callActivity id="Activity_1cfeswg" name="WHT  NLD">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="Simplified_WHT_NLD" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0n7rmmn</bpmn:incoming>
+      <bpmn:outgoing>Flow_0xxrkq1</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Activity_1txnauk" name="DTT NLD">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="Simplified_DTT_DIV_NLD_BPMN" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1h53g6f</bpmn:incoming>
+      <bpmn:outgoing>Flow_1v8zs0k</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:exclusiveGateway id="Gateway_0cnb4rt">
+      <bpmn:incoming>Flow_1p8zhic</bpmn:incoming>
+      <bpmn:outgoing>Flow_0n7rmmn</bpmn:outgoing>
+      <bpmn:outgoing>Flow_19u1idh</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1p8zhic" sourceRef="Activity_02tkubc" targetRef="Gateway_0cnb4rt" />
+    <bpmn:sequenceFlow id="Flow_0n7rmmn" sourceRef="Gateway_0cnb4rt" targetRef="Activity_1cfeswg">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rEnitityQualificationNLD= "Liable for Income Tax" or rEnitityQualificationNLD= "Liable for Corporation Tax"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:callActivity id="Activity_02tkubc" name="check if recipient is opaque">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="Qualification_of_Entities_NLD_Simplified" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0vskma5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1p8zhic</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_1aavxbi">
+      <bpmn:incoming>Flow_19u1idh</bpmn:incoming>
+      <bpmn:incoming>Flow_1xn2n47</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_19u1idh" sourceRef="Gateway_0cnb4rt" targetRef="Event_1aavxbi">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rEnitityQualificationNLD= "Not Liable for Corporation Tax"
+or rEnitityQualificationNLD= "Entity type not covered in MVP"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:callActivity id="Activity_0n790n3" name="Determine the ammount of local taxation">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="Simplified_Recipient_Tax_NLD_BPMN" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1v8zs0k</bpmn:incoming>
+      <bpmn:outgoing>Flow_19w53wj</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_0xxrkq1" sourceRef="Activity_1cfeswg" targetRef="Activity_1vup6xv" />
+    <bpmn:sequenceFlow id="Flow_1h53g6f" sourceRef="Activity_1vup6xv" targetRef="Activity_1txnauk" />
+    <bpmn:callActivity id="Activity_1vup6xv" name="Local taxation foreign owner">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="simplified_non_resident_taxation_dutch_income" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0xxrkq1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1h53g6f</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_0fh5455" sourceRef="StartEvent_1" targetRef="Activity_0azmial" />
+    <bpmn:exclusiveGateway id="Gateway_0nm2dpv">
+      <bpmn:incoming>Flow_14xg05k</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vskma5</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1xn2n47</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_14xg05k" sourceRef="Activity_0azmial" targetRef="Gateway_0nm2dpv" />
+    <bpmn:sequenceFlow id="Flow_0vskma5" sourceRef="Gateway_0nm2dpv" targetRef="Activity_02tkubc">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=pEnitityQualificationNLD = "Liable for Corporation Tax"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1xn2n47" sourceRef="Gateway_0nm2dpv" targetRef="Event_1aavxbi">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=pEnitityQualificationNLD != "Liable for Corporation Tax"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:callActivity id="Activity_0azmial" name="check if distribution is dividend">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="payor_Qualification_of_Entities_NLD_simplified" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0fh5455</bpmn:incoming>
+      <bpmn:outgoing>Flow_14xg05k</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:textAnnotation id="TextAnnotation_08vqvb5">
+      <bpmn:text>add up local tax and treaties</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0o8oku6" associationDirection="None" sourceRef="Event_0khedm5" targetRef="TextAnnotation_08vqvb5" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Complete_Process_Div_NLD_Simplified_Master">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="170" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0khedm5_di" bpmnElement="Event_0khedm5">
+        <dc:Bounds x="1402" y="168" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11qza2i_di" bpmnElement="Activity_1cfeswg">
+        <dc:Bounds x="740" y="146" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13bn5t0_di" bpmnElement="Activity_1txnauk">
+        <dc:Bounds x="1070" y="146" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0cnb4rt_di" bpmnElement="Gateway_0cnb4rt" isMarkerVisible="true">
+        <dc:Bounds x="645" y="161" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bnu1mx_di" bpmnElement="Activity_02tkubc">
+        <dc:Bounds x="490" y="146" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1aavxbi_di" bpmnElement="Event_1aavxbi">
+        <dc:Bounds x="1402" y="282" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1nf28zv_di" bpmnElement="Activity_0n790n3">
+        <dc:Bounds x="1240" y="146" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0iy1fuw_di" bpmnElement="Activity_1vup6xv">
+        <dc:Bounds x="910" y="146" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0nm2dpv_di" bpmnElement="Gateway_0nm2dpv" isMarkerVisible="true">
+        <dc:Bounds x="395" y="163" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0uos29c_di" bpmnElement="Activity_0azmial">
+        <dc:Bounds x="260" y="148" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0o8oku6_di" bpmnElement="Association_0o8oku6">
+        <di:waypoint x="1431" y="172" />
+        <di:waypoint x="1471" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_08vqvb5_di" bpmnElement="TextAnnotation_08vqvb5">
+        <dc:Bounds x="1440" y="80" width="100" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0fh5455_di" bpmnElement="Flow_0fh5455">
+        <di:waypoint x="188" y="188" />
+        <di:waypoint x="260" y="188" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19w53wj_di" bpmnElement="Flow_19w53wj">
+        <di:waypoint x="1340" y="186" />
+        <di:waypoint x="1402" y="186" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0n7rmmn_di" bpmnElement="Flow_0n7rmmn">
+        <di:waypoint x="695" y="186" />
+        <di:waypoint x="740" y="186" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xxrkq1_di" bpmnElement="Flow_0xxrkq1">
+        <di:waypoint x="840" y="186" />
+        <di:waypoint x="910" y="186" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1h53g6f_di" bpmnElement="Flow_1h53g6f">
+        <di:waypoint x="1010" y="186" />
+        <di:waypoint x="1070" y="186" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1v8zs0k_di" bpmnElement="Flow_1v8zs0k">
+        <di:waypoint x="1170" y="186" />
+        <di:waypoint x="1240" y="186" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1p8zhic_di" bpmnElement="Flow_1p8zhic">
+        <di:waypoint x="590" y="186" />
+        <di:waypoint x="645" y="186" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19u1idh_di" bpmnElement="Flow_19u1idh">
+        <di:waypoint x="670" y="211" />
+        <di:waypoint x="670" y="300" />
+        <di:waypoint x="1402" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vskma5_di" bpmnElement="Flow_0vskma5">
+        <di:waypoint x="445" y="188" />
+        <di:waypoint x="490" y="188" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xn2n47_di" bpmnElement="Flow_1xn2n47">
+        <di:waypoint x="420" y="213" />
+        <di:waypoint x="420" y="300" />
+        <di:waypoint x="1402" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14xg05k_di" bpmnElement="Flow_14xg05k">
+        <di:waypoint x="360" y="188" />
+        <di:waypoint x="395" y="188" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

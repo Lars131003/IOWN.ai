@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1hoif7g" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="a764577" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="Simplified_Crediting_foreign_WHT_SI" name="Crediting foreign WHT">
+    <informationRequirement id="InformationRequirement_1hvz4q2">
+      <requiredInput href="#InputData_0yoi4mx" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1j8tac0">
+      <requiredDecision href="#Decision_viwq4aq" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1j9cgfu">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>pResidence</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_12erp2x">
+          <text>"AFG","AGO","BLZ","BEN","BTN","BOL","BFA","BDI","KHM","CAF","COL","COM","COG","DJI","SLV","ERI","SWZ","GMB","GTM","HND","IRQ","CIV","YEM","CPV","CMR","KEN","KGZ","KIR","LAO","LSO","LBR","MDG","MWI","MLI","MRT","MOZ","MMR","NPL","NIC","NER","TLS","PSE","PNG","PER","RWA","SLB","WSM","STP","SEN","SLE","SOM","SYR","TJK","TZA","TGO","TKL","TCD","TUV","VUT","SSD"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" name="foreingWHTCredit" typeRef="Any" />
+      <rule id="DecisionRule_0p05urk">
+        <inputEntry id="UnaryTests_0jql2jg">
+          <text>"AFG","AGO","BLZ","BEN","BTN","BOL","BFA","BDI","KHM","CAF","COL","COM","COG","DJI","SLV","ERI","SWZ","GMB","GTM","HND","IRQ","CIV","YEM","CPV","CMR","KEN","KGZ","KIR","LAO","LSO","LBR","MDG","MWI","MLI","MRT","MOZ","MMR","NPL","NIC","NER","TLS","PSE","PNG","PER","RWA","SLB","WSM","STP","SEN","SLE","SOM","SYR","TJK","TZA","TGO","TKL","TCD","TUV","VUT","SSD"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14ss58s">
+          <text>max_foreign_WHT_credit</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1xhn2t0">
+        <inputEntry id="UnaryTests_1ti38ds">
+          <text>not("AFG","AGO","BLZ","BEN","BTN","BOL","BFA","BDI","KHM","CAF","COL","COM","COG","DJI","SLV","ERI","SWZ","GMB","GTM","HND","IRQ","CIV","YEM","CPV","CMR","KEN","KGZ","KIR","LAO","LSO","LBR","MDG","MWI","MLI","MRT","MOZ","MMR","NPL","NIC","NER","TLS","PSE","PNG","PER","RWA","SLB","WSM","STP","SEN","SLE","SOM","SYR","TJK","TZA","TGO","TKL","TCD","TUV","VUT","SSD")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1hmrml6">
+          <text>"Payor isn't resident in developing nation"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0yoi4mx" name="pResidence" />
+  <inputData id="InputData_1vrh117" name="foreingWHTammount" />
+  <inputData id="InputData_0pxgu19" name="dividendAmmount" />
+  <decision id="Decision_viwq4aq" name="max foreign WHT credit">
+    <variable id="InformationItem_0xn8njv" name="max_foreign_WHT_credit" typeRef="number" />
+    <informationRequirement id="InformationRequirement_1695dmu">
+      <requiredInput href="#InputData_1vrh117" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1q712cw">
+      <requiredInput href="#InputData_0pxgu19" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0vz8llo">
+      <requiredInput href="#InputData_1ryd9os" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1j2uzko">
+      <text>min(foreingWHTammount, sIIncomeTaxBeforeCredit)
+  
+</text>
+    </literalExpression>
+  </decision>
+  <inputData id="InputData_1ryd9os" name="sIIncomeTaxBeforeCredit" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Simplified_Crediting_foreign_WHT_SI">
+        <dc:Bounds height="80" width="180" x="240" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0u72zbq" dmnElementRef="InputData_0yoi4mx">
+        <dc:Bounds height="45" width="125" x="157" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0tye2l1" dmnElementRef="InformationRequirement_1hvz4q2">
+        <di:waypoint x="220" y="337" />
+        <di:waypoint x="300" y="200" />
+        <di:waypoint x="300" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0etwr34" dmnElementRef="InputData_1vrh117">
+        <dc:Bounds height="45" width="125" x="387" y="537" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_178xg82" dmnElementRef="InformationRequirement_1j8tac0">
+        <di:waypoint x="450" y="320" />
+        <di:waypoint x="360" y="200" />
+        <di:waypoint x="360" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_109zi5s" dmnElementRef="InformationRequirement_1695dmu">
+        <di:waypoint x="450" y="537" />
+        <di:waypoint x="450" y="420" />
+        <di:waypoint x="450" y="400" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_09rf46z" dmnElementRef="InputData_0pxgu19">
+        <dc:Bounds height="45" width="125" x="247" y="537" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0galtbc" dmnElementRef="InformationRequirement_1q712cw">
+        <di:waypoint x="310" y="537" />
+        <di:waypoint x="405" y="420" />
+        <di:waypoint x="405" y="400" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_04m0c7p" dmnElementRef="Decision_viwq4aq">
+        <dc:Bounds height="80" width="180" x="360" y="320" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0c6d4gp" dmnElementRef="InputData_1ryd9os">
+        <dc:Bounds height="45" width="125" x="627" y="537" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0cdq6xi" dmnElementRef="InformationRequirement_0vz8llo">
+        <di:waypoint x="690" y="537" />
+        <di:waypoint x="495" y="420" />
+        <di:waypoint x="495" y="400" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="simplified_Modeled_treaties_WHT_NLD" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="addcace" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <inputData id="InputData_1ab4f0e" name="rResidence" />
+  <decision id="recipient_modelled_nld" name="recipient modelled nld">
+    <informationRequirement id="InformationRequirement_0vyo1pu">
+      <requiredInput href="#InputData_1ab4f0e" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1rwaxb3">
+      <input id="InputClause_1i24mz7">
+        <inputExpression id="LiteralExpression_1ebmyxm" typeRef="string">
+          <text>rResidence</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0k1369p">
+          <text>"CHI","USA","ESP"</text>
+        </inputValues>
+      </input>
+      <output id="OutputClause_03qjkpi" name="rModelledTreatyStateNLD" typeRef="string" />
+      <rule id="DecisionRule_1leps59">
+        <inputEntry id="UnaryTests_1ofo20z">
+          <text>"CHI"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1n5wzh2">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_04e1111">
+        <inputEntry id="UnaryTests_1wrb3ne">
+          <text>"USA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xegtz3">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02uhr66">
+        <inputEntry id="UnaryTests_0fv5l0h">
+          <text>"ESP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0v17vfi">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ykig8q">
+        <inputEntry id="UnaryTests_1itqj0o">
+          <text>not("CHI","USA","ESP")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1u2wpuj">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="DMNShape_0gngll6" dmnElementRef="InputData_1ab4f0e">
+        <dc:Bounds height="45" width="125" x="187" y="227" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_01uzd82" dmnElementRef="InformationRequirement_0vyo1pu">
+        <di:waypoint x="250" y="227" />
+        <di:waypoint x="250" y="180" />
+        <di:waypoint x="250" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_11r4ciz" dmnElementRef="recipient_modelled_nld">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

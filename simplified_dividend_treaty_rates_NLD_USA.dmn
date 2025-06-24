@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1u4h87j" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="14b513a" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="simplified_dividend_treaty_rates_NLD_USA_Check" name="simplified_dividend_treaty_rates_NLD_USA_Check">
+    <informationRequirement id="InformationRequirement_13b80m1">
+      <requiredInput href="#InputData_0i1stj3" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1u9bc1a">
+      <requiredInput href="#InputData_0olocak" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1t5cpd6">
+      <requiredInput href="#InputData_1n7d5rh" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_06t3t5n">
+      <requiredDecision href="#Decision_sy9rp79" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1txdd6x">
+      <requiredDecision href="#Decision_h0sgxqo" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0xvuiko">
+      <requiredDecision href="#Decision_0p1f9c1" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_155njwp" hitPolicy="FIRST">
+      <input id="Input_1" biodi:width="192">
+        <inputExpression id="InputExpression_1" typeRef="boolean">
+          <text>pLegalPersonality</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0gxsj5i">
+        <inputExpression id="LiteralExpression_0qvvyk0" typeRef="string">
+          <text>pRegulatoryStatus</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0eljs5r" biodi:width="192">
+        <inputExpression id="LiteralExpression_05gtbpm" typeRef="number">
+          <text>rVotingRights</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0a01php">
+        <inputExpression id="LiteralExpression_1r71p33" typeRef="boolean">
+          <text>holdTimeExDivOverYear</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1exs22z">
+        <inputExpression id="LiteralExpression_12k1cr2" typeRef="number">
+          <text>rVotingRightsDirectIndicrectOkt11998</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1sga3du">
+        <inputExpression id="LiteralExpression_0jhca13" typeRef="number">
+          <text>sReitRate</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_179ps86">
+        <inputExpression id="LiteralExpression_0f04g0b" typeRef="boolean">
+          <text>LOB</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="treatyRatesNLDUSA" typeRef="number" />
+      <rule id="DecisionRule_17xn649">
+        <inputEntry id="UnaryTests_0imdq3d">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11qiahj">
+          <text>not("RIC","REIT","VBI")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06gaw5z">
+          <text>&gt;=.80</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06k3rv7">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yn5ra9">
+          <text>&gt;=.80</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05zrrgs">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cuij2z">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0x1dqzh">
+          <text>0.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0fg4ur5">
+        <inputEntry id="UnaryTests_1ddc6ok">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1161com">
+          <text>not("RIC","REIT","VBI")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yxfjuc">
+          <text>&gt;=80</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19prxru">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0m7n7tp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hhmstf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gftofj">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1hjhobn">
+          <text>0.00</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0l6pj48">
+        <inputEntry id="UnaryTests_1p5u8y9">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18klbjo">
+          <text>not("RIC","REIT","VBI")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03cjoht">
+          <text>&gt;=.10</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09qq57q">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1onji2r">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xxh8ci">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0emc2kq">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0w0uo35">
+          <text>0.05</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1gw3yvq">
+        <inputEntry id="UnaryTests_1e3ctle">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02gfbwt">
+          <text>"REIT"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vtmcm7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_041nsp1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hyo0ci">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zh1zhx">
+          <text>0.15</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18ikolb">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0je9zwp">
+          <text>0.15</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1x35u86">
+        <inputEntry id="UnaryTests_0m7r22e">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nul74g">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pfydg8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1d3skah">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hp5swj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tlibhn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03accle">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xcllv4">
+          <text>100</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0i1stj3" name="pLegalPersonality" />
+  <inputData id="InputData_0olocak" name="rVotingRights" />
+  <inputData id="InputData_1pc8abg" name="exDividendDate" />
+  <inputData id="InputData_06lxi3i" name="rStartOwnershipSharesRecipient" />
+  <inputData id="InputData_17ykuzn" name="pRegulatoryStatus" />
+  <decision id="Decision_mzkmjwm" name="Holding time at time of dividend">
+    <variable id="InformationItem_0ewibnv" name="holdtimeExDividend" typeRef="dayTimeDuration" />
+    <informationRequirement id="InformationRequirement_1ezahmi">
+      <requiredInput href="#InputData_1pc8abg" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1luzcwi">
+      <requiredInput href="#InputData_06lxi3i" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_0sxikp6">
+      <text>date(exDividendDate)-date(rStartOwnershipSharesRecipient)</text>
+    </literalExpression>
+  </decision>
+  <inputData id="InputData_1n7d5rh" name="rVotingRightsDirectIndicrectOkt11998" />
+  <inputData id="InputData_0kw3oal" name="rNaturalPerson" />
+  <inputData id="InputData_09y7bl7" name="rRegulatoryStatus" />
+  <decision id="Decision_sy9rp79" name="reit treaty rate">
+    <informationRequirement id="InformationRequirement_0yta6gn">
+      <requiredInput href="#InputData_0olocak" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1mncchy">
+      <requiredInput href="#InputData_0kw3oal" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0k2r7qu">
+      <requiredInput href="#InputData_09y7bl7" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1xf8zz0">
+      <requiredInput href="#InputData_17ykuzn" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0x6ziu9" hitPolicy="FIRST">
+      <input id="InputClause_1rx76sr">
+        <inputExpression id="LiteralExpression_1x6r8su" typeRef="boolean">
+          <text>rNaturalPerson</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0oyc00t">
+        <inputExpression id="LiteralExpression_168h5od" typeRef="string">
+          <text>rRegulatoryStatus</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0vkquwg">
+        <inputExpression id="LiteralExpression_0ogjb2e" typeRef="number">
+          <text>rVotingRights</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_02xypvo">
+        <inputExpression id="LiteralExpression_1iablhc" typeRef="string">
+          <text>pRegulatoryStatus</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_11gv03m" name="sReitRate" typeRef="number" />
+      <rule id="DecisionRule_0aqggh8">
+        <inputEntry id="UnaryTests_1yhh2wi">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yiltuh">
+          <text>not("VBI")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pu30cs">
+          <text>&lt;=.25</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13d8zvo">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1irfj45">
+          <text>0.15</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_04ll9s7">
+        <inputEntry id="UnaryTests_1sfn4bd">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cy0ule">
+          <text>not("VBI")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1f8y2oz">
+          <text>&lt;=.05</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_182eg54">
+          <text>"publiclyTraded"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1v9flc8">
+          <text>0.15</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1vopv5x">
+        <description>treaty rate  doesn't apply</description>
+        <inputEntry id="UnaryTests_07pnd33">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17kf3ne">
+          <text>"VBI"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jf8cit">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1j4l4qm">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1mtgz9k">
+          <text>100</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1sbzuky">
+        <description>treaty rate doesn't apply </description>
+        <inputEntry id="UnaryTests_0rpzc87">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15t6a25">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fuligh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15lehw1">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1l0zwil">
+          <text>100</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_h0sgxqo" name="LOB regime">
+    <informationRequirement id="InformationRequirement_0uht14y">
+      <requiredInput href="#InputData_09y7bl7" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_11nhiqz">
+      <requiredInput href="#InputData_0olocak" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1lkk30d" hitPolicy="FIRST">
+      <input id="InputClause_1bugju2">
+        <inputExpression id="LiteralExpression_1gu47t4" typeRef="string">
+          <text>rRegulatoryStatus</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0h3i578">
+        <inputExpression id="LiteralExpression_0h0xhcp" typeRef="string">
+          <text>rVotingRights</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1bm356l" name="LOB" typeRef="boolean" />
+      <rule id="DecisionRule_0knbec9">
+        <inputEntry id="UnaryTests_0if3jg3">
+          <text>"publiclyTraded"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qncnjd">
+          <text>&gt;=50</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05xombc">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1pm16y1">
+        <inputEntry id="UnaryTests_17rpl80">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14x0rdc">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_06i6m9v">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Decision_0p1f9c1" name="holding time longer than a year">
+    <variable id="InformationItem_0e5jpdu" name="holdTimeExDivOverYear" typeRef="boolean" />
+    <informationRequirement id="InformationRequirement_0zmdbn0">
+      <requiredDecision href="#Decision_mzkmjwm" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_0vwru4n">
+      <text>duration(holdtimeExDividend) &gt; duration("P366D")</text>
+    </literalExpression>
+  </decision>
+  <textAnnotation id="TextAnnotation_00jgrl6">
+    <text>cover art 26(2)(c) and 26(3)</text>
+  </textAnnotation>
+  <association id="Association_1x3jftk">
+    <sourceRef href="#TextAnnotation_00jgrl6" />
+    <targetRef href="#simplified_dividend_treaty_rates_NLD_USA_Check" />
+  </association>
+  <textAnnotation id="TextAnnotation_11vmc91">
+    <text>LOB art. 26(7) not covered</text>
+  </textAnnotation>
+  <association id="Association_0i7x5dd">
+    <sourceRef href="#TextAnnotation_11vmc91" />
+    <targetRef href="#simplified_dividend_treaty_rates_NLD_USA_Check" />
+  </association>
+  <textAnnotation id="TextAnnotation_1ghlqps">
+    <text>reit ect, in principe 15%, soms meer, voorwaarden in art 10(4)</text>
+  </textAnnotation>
+  <association id="Association_1u3lnd7">
+    <sourceRef href="#TextAnnotation_1ghlqps" />
+    <targetRef href="#simplified_dividend_treaty_rates_NLD_USA_Check" />
+  </association>
+  <textAnnotation id="TextAnnotation_0xia34e">
+    <text>includes: "RIC","REIT","VBI" "publiclyTraded"</text>
+  </textAnnotation>
+  <association id="Association_1gqq923">
+    <sourceRef href="#TextAnnotation_0xia34e" />
+    <targetRef href="#InputData_17ykuzn" />
+  </association>
+  <textAnnotation id="TextAnnotation_0vcckbt">
+    <text>change, make correct -</text>
+  </textAnnotation>
+  <association id="Association_0091jpy">
+    <sourceRef href="#TextAnnotation_0vcckbt" />
+    <targetRef href="#Decision_h0sgxqo" />
+  </association>
+  <textAnnotation id="TextAnnotation_0c3mspi">
+    <text>requires additional simplification. Take a look at Andres' LOB</text>
+  </textAnnotation>
+  <association id="Association_1c0pkzq">
+    <sourceRef href="#TextAnnotation_0c3mspi" />
+    <targetRef href="#simplified_dividend_treaty_rates_NLD_USA_Check" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="simplified_dividend_treaty_rates_NLD_USA_Check">
+        <dc:Bounds height="80" width="180" x="810" y="430" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_02dluy6" dmnElementRef="InputData_0i1stj3">
+        <dc:Bounds height="45" width="125" x="563" y="457" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0bqw3vc" dmnElementRef="InformationRequirement_13b80m1">
+        <di:waypoint x="688" y="480" />
+        <di:waypoint x="790" y="470" />
+        <di:waypoint x="810" y="470" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1i7yzan" dmnElementRef="InputData_0olocak">
+        <dc:Bounds height="45" width="125" x="157" y="927" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1x878of" dmnElementRef="InformationRequirement_1u9bc1a">
+        <di:waypoint x="220" y="927" />
+        <di:waypoint x="840" y="530" />
+        <di:waypoint x="840" y="510" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_02u7m55" dmnElementRef="InputData_1pc8abg">
+        <dc:Bounds height="45" width="125" x="1107" y="937" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0j0inqk" dmnElementRef="InformationRequirement_1ezahmi">
+        <di:waypoint x="1170" y="937" />
+        <di:waypoint x="1220" y="900" />
+        <di:waypoint x="1220" y="880" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1957pk1" dmnElementRef="InputData_06lxi3i">
+        <dc:Bounds height="45" width="125" x="1267" y="937" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1shspmt" dmnElementRef="InformationRequirement_1luzcwi">
+        <di:waypoint x="1330" y="937" />
+        <di:waypoint x="1280" y="900" />
+        <di:waypoint x="1280" y="880" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_15bwxdz" dmnElementRef="InputData_17ykuzn">
+        <dc:Bounds height="45" width="125" x="677" y="927" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1mo08qm" dmnElementRef="Decision_mzkmjwm">
+        <dc:Bounds height="80" width="180" x="1160" y="800" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0bq4k7s" dmnElementRef="InputData_1n7d5rh">
+        <dc:Bounds height="45" width="125" x="1517" y="937" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_09tfupv" dmnElementRef="InformationRequirement_1t5cpd6">
+        <di:waypoint x="1580" y="937" />
+        <di:waypoint x="1380" y="620" />
+        <di:waypoint x="960" y="530" />
+        <di:waypoint x="960" y="510" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1unz3lz" dmnElementRef="TextAnnotation_00jgrl6">
+        <dc:Bounds height="80" width="100" x="990" y="300" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_10sp1bg" dmnElementRef="Association_1x3jftk">
+        <di:waypoint x="997" y="380" />
+        <di:waypoint x="943" y="430" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_18qe8lp" dmnElementRef="TextAnnotation_11vmc91">
+        <dc:Bounds height="80" width="100" x="990" y="190" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0wlrshg" dmnElementRef="Association_0i7x5dd">
+        <di:waypoint x="1017" y="270" />
+        <di:waypoint x="923" y="430" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1yhordq" dmnElementRef="TextAnnotation_1ghlqps">
+        <dc:Bounds height="80" width="100" x="590" y="200" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0h8szsg" dmnElementRef="Association_1u3lnd7">
+        <di:waypoint x="685" y="280" />
+        <di:waypoint x="855" y="430" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_11nyw75" dmnElementRef="InformationRequirement_06t3t5n">
+        <di:waypoint x="680" y="730" />
+        <di:waypoint x="870" y="530" />
+        <di:waypoint x="870" y="510" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_17r3n2f" dmnElementRef="InformationRequirement_0yta6gn">
+        <di:waypoint x="220" y="927" />
+        <di:waypoint x="626" y="830" />
+        <di:waypoint x="626" y="810" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1wcdfex" dmnElementRef="InputData_0kw3oal">
+        <dc:Bounds height="45" width="125" x="537" y="927" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0rk94of" dmnElementRef="InformationRequirement_1mncchy">
+        <di:waypoint x="600" y="927" />
+        <di:waypoint x="662" y="830" />
+        <di:waypoint x="662" y="810" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1tgulnd" dmnElementRef="InputData_09y7bl7">
+        <dc:Bounds height="45" width="125" x="857" y="927" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1do32i0" dmnElementRef="InformationRequirement_0k2r7qu">
+        <di:waypoint x="920" y="927" />
+        <di:waypoint x="734" y="830" />
+        <di:waypoint x="734" y="810" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0uayc8u" dmnElementRef="Decision_sy9rp79">
+        <dc:Bounds height="80" width="180" x="590" y="730" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0knmjcl" dmnElementRef="InformationRequirement_1txdd6x">
+        <di:waypoint x="920" y="570" />
+        <di:waypoint x="900" y="530" />
+        <di:waypoint x="900" y="510" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0vmyioi" dmnElementRef="Decision_h0sgxqo">
+        <dc:Bounds height="80" width="180" x="830" y="570" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_192wjx7" dmnElementRef="InformationRequirement_1xf8zz0">
+        <di:waypoint x="740" y="927" />
+        <di:waypoint x="698" y="830" />
+        <di:waypoint x="698" y="810" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0vhg5yz" dmnElementRef="TextAnnotation_0xia34e">
+        <dc:Bounds height="80" width="100" x="820" y="690" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1uydkwj" dmnElementRef="Association_1gqq923">
+        <di:waypoint x="830" y="770" />
+        <di:waypoint x="763" y="927" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1n9burv" dmnElementRef="TextAnnotation_0vcckbt">
+        <dc:Bounds height="80" width="100" x="1610" y="520" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0hsw8a3" dmnElementRef="Association_0091jpy">
+        <di:waypoint x="1617" y="600" />
+        <di:waypoint x="1010" y="572" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1j5wyjm" dmnElementRef="InformationRequirement_0uht14y">
+        <di:waypoint x="920" y="927" />
+        <di:waypoint x="950" y="650" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0rfsac1" dmnElementRef="InformationRequirement_11nhiqz">
+        <di:waypoint x="220" y="927" />
+        <di:waypoint x="890" y="670" />
+        <di:waypoint x="890" y="650" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1sbpwv1" dmnElementRef="TextAnnotation_0c3mspi">
+        <dc:Bounds height="80" width="100" x="990" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_00a6v99" dmnElementRef="Association_1c0pkzq">
+        <di:waypoint x="1024" y="160" />
+        <di:waypoint x="916" y="430" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1fn7hfy" dmnElementRef="InformationRequirement_0xvuiko">
+        <di:waypoint x="1240" y="650" />
+        <di:waypoint x="930" y="530" />
+        <di:waypoint x="930" y="510" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_02r8706" dmnElementRef="InformationRequirement_0zmdbn0">
+        <di:waypoint x="1250" y="800" />
+        <di:waypoint x="1240" y="750" />
+        <di:waypoint x="1240" y="730" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_10xho6i" dmnElementRef="Decision_0p1f9c1">
+        <dc:Bounds height="80" width="180" x="1150" y="650" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

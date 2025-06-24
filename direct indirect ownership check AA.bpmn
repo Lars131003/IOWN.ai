@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="22173ef" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0" camunda:diagramRelationId="1785a5af-b649-4435-acf0-f40d0ef2d41a">
+  <bpmn:process id="direct_indirect_ownership_AA_simplified" name="API Orchestration Tutorial" isExecutable="true">
+    <bpmn:startEvent id="StartEvent" name="Start">
+      <bpmn:extensionElements>
+        <zeebe:properties>
+          <zeebe:property name="camundaModeler:exampleOutputJson" value="{&#10;   &#34;script&#34;:&#34;1&#34;,&#10;   &#34;params&#34;:{&#10;      &#34;operation&#34;:&#34;dividends&#34;,&#10;      &#34;from&#34;:{&#10;         &#34;id&#34;:&#34;A1&#34;,&#10;         &#34;type&#34;:&#34;company&#34;&#10;      },&#10;      &#34;to&#34;:{&#10;         &#34;id&#34;:&#34;A3&#34;,&#10;         &#34;type&#34;:&#34;company&#34;&#10;      },&#10;      &#34;graph&#34;:{&#10;         &#34;nodes&#34;:[&#10;            {&#10;               &#34;id&#34;:&#34;A1&#34;,&#10;               &#34;type&#34;:&#34;company&#34;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;A2&#34;,&#10;               &#34;type&#34;:&#34;company&#34;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;A3&#34;,&#10;               &#34;type&#34;:&#34;company&#34;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;A4&#34;,&#10;               &#34;type&#34;:&#34;company&#34;&#10;            }&#10;         ],&#10;         &#34;relations&#34;:[&#10;            {&#10;               &#34;id&#34;:&#34;R1&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;A1&#34;,&#10;               &#34;toNode&#34;:&#34;A2&#34;,&#10;               &#34;ownerpercentage&#34;:20&#10;            },&#10;             {&#10;               &#34;id&#34;:&#34;R2&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;A2&#34;,&#10;               &#34;toNode&#34;:&#34;A3&#34;,&#10;               &#34;ownerpercentage&#34;:20&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;R3&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;A1&#34;,&#10;               &#34;toNode&#34;:&#34;A3&#34;,&#10;               &#34;ownerpercentage&#34;:20&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;R4&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;A4&#34;,&#10;               &#34;toNode&#34;:&#34;A1&#34;,&#10;               &#34;ownerpercentage&#34;:50&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;R5&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;A4&#34;,&#10;               &#34;toNode&#34;:&#34;A3&#34;,&#10;               &#34;ownerpercentage&#34;:50&#10;            }&#10;         ]&#10;      }&#10;   }&#10;}" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent" targetRef="Activity_0xo7wrd" />
+    <bpmn:serviceTask id="make-request" name="Make a request" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="7" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:http-json:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="noAuth" target="authentication.type" />
+          <zeebe:input source="POST" target="method" />
+          <zeebe:input source="https://camundanodetest.azurewebsites.net/api/CamundaNode1" target="url" />
+          <zeebe:input source="20" target="connectionTimeoutInSeconds" />
+          <zeebe:input source="20" target="readTimeoutInSeconds" />
+          <zeebe:input source="0" target="writeTimeoutInSeconds" />
+          <zeebe:input source="={&#10;    &#34;script&#34;: script1,&#10;    &#34;params&#34;: params1&#10;}" target="body" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="resultVariable" value="result" />
+          <zeebe:header key="resultExpression" value="={&#34;result&#34; : body}" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_04elwf4</bpmn:incoming>
+      <bpmn:outgoing>Flow_012hupf</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:scriptTask id="Activity_0xo7wrd" name="Script">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=&#34;function markRelations(e){e.nodes.forEach(e=&#62;{e.children=[],e.parents=[]}),e.relations.forEach(r=&#62;{var n=e.nodes.filter(e=&#62;e.id==r.fromNode)[0],o=e.nodes.filter(e=&#62;e.id==r.toNode)[0];n&#38;&#38;o&#38;&#38;(n.children.push({relation:r,node:o}),o.parents.push({relation:r,node:n}))})}function getParentPercentage(e,r){return function e(n,o){return n==r?o:n.children.map(r=&#62;e(r.node,r.relation.ownerpercentage*o/100)).reduce((e,r)=&#62;e+r,0)}(e,100)}markRelations(params.graph);var fromNode=params.graph.nodes.filter(e=&#62;e.id==params.from.id)[0],toNode=params.graph.nodes.filter(e=&#62;e.id==params.to.id)[0],fromToOwnership=getParentPercentage(fromNode,toNode),toFromOwnership=getParentPercentage(toNode,fromNode);function findParents(e,r,n){return(n=n||[])[e.id]?n[e.id]+=r:n[e.id]=r,e.parents.forEach(e=&#62;findParents(e.node,e.relation.ownerpercentage*r/100,n)),n}var fromParentsMap=findParents(fromNode,100,[]),toParentsMap=findParents(toNode,100,[]),maxJointOwnership=0;for(var key in fromParentsMap){if(!toParentsMap[key])break;var e=Math.min(fromParentsMap[key],toParentsMap[key]);maxJointOwnership=maxJointOwnership&#62;e?maxJointOwnership:e}var outputdata={fromToOwnership:fromToOwnership,toFromOwnership:toFromOwnership,maxJointOwnership:maxJointOwnership};outputdata;&#34;" resultVariable="script" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_04elwf4</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_04elwf4" sourceRef="Activity_0xo7wrd" targetRef="make-request" />
+    <bpmn:sequenceFlow id="Flow_012hupf" sourceRef="make-request" targetRef="Activity_0je1l8g" />
+    <bpmn:endEvent id="Event_0lkc0gi">
+      <bpmn:incoming>Flow_0gidbig</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0gidbig" sourceRef="Activity_0je1l8g" targetRef="Event_0lkc0gi" />
+    <bpmn:scriptTask id="Activity_0je1l8g" name="Check for control">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=if sum(result.result.fromToOwnership) &#62; 50 then true else false" resultVariable="rControlAA" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_012hupf</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gidbig</bpmn:outgoing>
+    </bpmn:scriptTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="direct_indirect_ownership_AA_simplified">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="158" y="145" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0le5362_di" bpmnElement="make-request">
+        <dc:Bounds x="260" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xo7wrd_di" bpmnElement="Activity_0xo7wrd">
+        <dc:Bounds x="260" y="-100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0lkc0gi_di" bpmnElement="Event_0lkc0gi">
+        <dc:Bounds x="562" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bnib0z_di" bpmnElement="Activity_0je1l8g">
+        <dc:Bounds x="410" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1acdqfc_di" bpmnElement="Flow_1">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="224" y="120" />
+        <di:waypoint x="224" y="-60" />
+        <di:waypoint x="260" y="-60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04elwf4_di" bpmnElement="Flow_04elwf4">
+        <di:waypoint x="310" y="-20" />
+        <di:waypoint x="310" y="80" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_012hupf_di" bpmnElement="Flow_012hupf">
+        <di:waypoint x="360" y="120" />
+        <di:waypoint x="410" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gidbig_di" bpmnElement="Flow_0gidbig">
+        <di:waypoint x="510" y="120" />
+        <di:waypoint x="562" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

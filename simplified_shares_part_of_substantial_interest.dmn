@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="asdhufkakushdgkjsdu" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="a3b2585" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <description>there are problems with differntiating between share classes. there must be real differences. a different name isn't enough. The requirements are:
+- different rights to dividends
+- different voting rights
+- preffered voting rights, if relevant, like for director positions. Special voting rights on things like the company christmas party don't coun't
+- right to name company also doesn't count
+- different reserves in the case of liquidation do count. </description>
+  <decision id="simplified_shares_part_of_substantial_check_NLD" name="Shares part of SI">
+    <informationRequirement id="InformationRequirement_01ay2ir">
+      <requiredInput href="#InputData_07dghcw" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1m6s5w4">
+      <input id="InputClause_1oqoksu">
+        <inputExpression id="LiteralExpression_1fq9bcp" typeRef="number">
+          <text>rMaxOwnershipPercentage</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="simplifiedSubstantialIntrestNLD" typeRef="boolean" biodi:width="192" />
+      <output id="OutputClause_06vrg6o" name="simplifiedSubstantialIntrestNLD_Header" typeRef="string" />
+      <output id="OutputClause_1k48uo3" name="simplifiedSubstantialIntrestNLD_Comment" typeRef="string" />
+      <output id="OutputClause_0witmhx" name="simplifiedSubstantialIntrestNLD_Ref" typeRef="string" />
+      <output id="OutputClause_16171g7" name="simplifiedSubstantialIntrestNLD_Disclaimer" typeRef="string" />
+      <rule id="DecisionRule_0qf3vyg">
+        <inputEntry id="UnaryTests_12503qv">
+          <text>&gt;=5</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ueb2z8">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_00kzgf2">
+          <text>"Shares are part of a substantial intrest"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_00r2qxe">
+          <text>"Dividends are payed on shares which are part of a substantial intrest"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_16x9ap2">
+          <text>"Art. 4.6 - 4.10 wet inkomstenbelasting 2003 "</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1oauojb">
+          <text>""</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02lqtrm">
+        <inputEntry id="UnaryTests_1517cgx">
+          <text>&lt;5</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xdrxgi">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1q0odxa">
+          <text>"Shares are not part of a substantial intrest"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1f0cpho">
+          <text>"Dividends are not payed on shares which are part of a substantial intrest"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0gb6pi4">
+          <text>"Art. 4.6 - 4.10 wet inkomstenbelasting 2003 "</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1cntwxr">
+          <text>""</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_07dghcw" name="rMaxOwnershipPercentage" />
+  <textAnnotation id="TextAnnotation_06ojk9g">
+    <text>Althoug dividends can't be payed on options. Owning a certain ammount of options will cause the substantial intrest rules to apply on an &gt;5% shareholding</text>
+  </textAnnotation>
+  <textAnnotation id="TextAnnotation_10g73hz">
+    <text>OptionOwnershipPercentage = total nominal value shares/nominal value share buyable by option. The same rule applies to class shares, but with class instead of total.</text>
+  </textAnnotation>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="simplified_shares_part_of_substantial_check_NLD">
+        <dc:Bounds height="80" width="180" x="160" y="240" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1ve7zzj" dmnElementRef="TextAnnotation_06ojk9g">
+        <dc:Bounds height="100" width="230" x="1450" y="190" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1plui6v" dmnElementRef="TextAnnotation_10g73hz">
+        <dc:Bounds height="80" width="220" x="1450" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0qffh11" dmnElementRef="InputData_07dghcw">
+        <dc:Bounds height="45" width="125" x="187" y="387" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_04cjjht" dmnElementRef="InformationRequirement_01ay2ir">
+        <di:waypoint x="250" y="387" />
+        <di:waypoint x="250" y="340" />
+        <di:waypoint x="250" y="320" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

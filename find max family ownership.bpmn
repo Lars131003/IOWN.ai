@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="05a9f67" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0" camunda:diagramRelationId="1785a5af-b649-4435-acf0-f40d0ef2d41a">
+  <bpmn:process id="find_max_family_ownership" name="API Orchestration Tutorial" isExecutable="true">
+    <bpmn:startEvent id="StartEvent" name="Start">
+      <bpmn:extensionElements>
+        <zeebe:properties>
+          <zeebe:property name="camundaModeler:exampleOutputJson" value="{&#10;   &#34;script&#34;:&#34;1&#34;,&#10;   &#34;params&#34;:{&#10;      &#34;operation&#34;:&#34;dividends&#34;,&#10;      &#34;from&#34;:{&#10;         &#34;id&#34;:&#34;A1&#34;,&#10;         &#34;type&#34;:&#34;company&#34;&#10;      },&#10;      &#34;to&#34;:{&#10;         &#34;id&#34;:&#34;P0&#34;,&#10;         &#34;type&#34;:&#34;individual&#34;&#10;      },&#10;      &#34;graph&#34;:{&#10;         &#34;nodes&#34;:[&#10;            {&#10;               &#34;id&#34;:&#34;A1&#34;,&#10;               &#34;type&#34;:&#34;company&#34;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;A2&#34;,&#10;               &#34;type&#34;:&#34;company&#34;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;A3&#34;,&#10;               &#34;type&#34;:&#34;company&#34;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;A4&#34;,&#10;               &#34;type&#34;:&#34;company&#34;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;P0&#34;,&#10;               &#34;type&#34;:&#34;individual&#34;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;P1&#34;,&#10;               &#34;type&#34;:&#34;individual&#34;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;P2&#34;,&#10;               &#34;type&#34;:&#34;individual&#34;&#10;            }&#10;         ],&#10;         &#34;relations&#34;:[&#10;            {&#10;               &#34;id&#34;:&#34;R1&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;A1&#34;,&#10;               &#34;toNode&#34;:&#34;A2&#34;,&#10;               &#34;ownerpercentage&#34;:20,&#10;               &#34;shares&#34;: [{&#34;type&#34;: &#34;nominal&#34;, &#34;amountPercentage&#34; : 20}, {&#34;type&#34;: &#34;preferred1&#34;, &#34;amountPercentage&#34; : 10}]&#10;            },&#10;             {&#10;               &#34;id&#34;:&#34;R2&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;A2&#34;,&#10;               &#34;toNode&#34;:&#34;A3&#34;,&#10;               &#34;ownerpercentage&#34;:20,&#10;               &#34;shares&#34;: [{&#34;type&#34;: &#34;nominal&#34;, &#34;amountPercentage&#34; : 20}, {&#34;type&#34;: &#34;preferred1&#34;, &#34;amountPercentage&#34; : 10}]&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;R3&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;A1&#34;,&#10;               &#34;toNode&#34;:&#34;A3&#34;,&#10;               &#34;ownerpercentage&#34;:20,&#10;               &#34;shares&#34;: [{&#34;type&#34;: &#34;nominal&#34;, &#34;amountPercentage&#34; : 20}, {&#34;type&#34;: &#34;preferred1&#34;, &#34;amountPercentage&#34; : 10}]&#10;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;R4&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;A4&#34;,&#10;               &#34;toNode&#34;:&#34;A1&#34;,&#10;               &#34;ownerpercentage&#34;:50,&#10;               &#34;shares&#34;: [{&#34;type&#34;: &#34;nominal&#34;, &#34;amountPercentage&#34; : 40}, {&#34;type&#34;: &#34;preferred1&#34;, &#34;amountPercentage&#34; : 60}]&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;R5&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;A4&#34;,&#10;               &#34;toNode&#34;:&#34;A3&#34;,&#10;               &#34;ownerpercentage&#34;:50,&#10;               &#34;shares&#34;: [{&#34;type&#34;: &#34;nominal&#34;, &#34;amountPercentage&#34; : 40}, {&#34;type&#34;: &#34;preferred1&#34;, &#34;amountPercentage&#34; : 60}]&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;S1&#34;,&#10;               &#34;type&#34;:&#34;Spouse&#34;,&#10;               &#34;fromNode&#34;:&#34;P1&#34;,&#10;               &#34;toNode&#34;:&#34;P2&#34;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;P1&#34;,&#10;               &#34;type&#34;:&#34;Parent&#34;,&#10;               &#34;fromNode&#34;:&#34;P1&#34;,&#10;               &#34;toNode&#34;:&#34;P0&#34;&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;R6&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;P0&#34;,&#10;               &#34;toNode&#34;:&#34;A1&#34;,&#10;               &#34;ownerpercentage&#34;:1,&#10;               &#34;shares&#34;: [{&#34;type&#34;: &#34;nominal&#34;, &#34;amountPercentage&#34; : 1}, {&#34;type&#34;: &#34;preferred1&#34;, &#34;amountPercentage&#34; : 1}]&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;R7&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;P1&#34;,&#10;               &#34;toNode&#34;:&#34;A4&#34;,&#10;               &#34;ownerpercentage&#34;:10,&#10;               &#34;shares&#34;: [{&#34;type&#34;: &#34;nominal&#34;, &#34;amountPercentage&#34; : 5}, {&#34;type&#34;: &#34;preferred1&#34;, &#34;amountPercentage&#34; : 15}]&#10;            },&#10;            {&#10;               &#34;id&#34;:&#34;R8&#34;,&#10;               &#34;type&#34;:&#34;Ownerhip&#34;,&#10;               &#34;fromNode&#34;:&#34;P2&#34;,&#10;               &#34;toNode&#34;:&#34;A4&#34;,&#10;               &#34;ownerpercentage&#34;:10,&#10;               &#34;shares&#34;: [{&#34;type&#34;: &#34;nominal&#34;, &#34;amountPercentage&#34; : 5}, {&#34;type&#34;: &#34;preferred1&#34;, &#34;amountPercentage&#34; : 15}]&#10;            }&#10;         ]&#10;      }&#10;   }&#10;}" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent" targetRef="Activity_0xo7wrd" />
+    <bpmn:serviceTask id="make-request" name="Make a request" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="7" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:http-json:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="noAuth" target="authentication.type" />
+          <zeebe:input source="POST" target="method" />
+          <zeebe:input source="https://camundanodetest.azurewebsites.net/api/CamundaNode1" target="url" />
+          <zeebe:input source="20" target="connectionTimeoutInSeconds" />
+          <zeebe:input source="20" target="readTimeoutInSeconds" />
+          <zeebe:input source="0" target="writeTimeoutInSeconds" />
+          <zeebe:input source="={&#10;    &#34;script&#34;: script,&#10;    &#34;params&#34;: params&#10;}" target="body" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="resultVariable" value="result" />
+          <zeebe:header key="resultExpression" value="={&#34;result&#34; : body}" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_04elwf4</bpmn:incoming>
+      <bpmn:outgoing>Flow_15egrek</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:scriptTask id="Activity_0xo7wrd" name="Script">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=&#34;function markRelations(e){e.nodes.forEach(e=&#62;{&#39;individual&#39;==e.type&#38;&#38;(e.spouses=[],e.children=[],e.parents=[],e.childrenOwn=[]),&#39;company&#39;==e.type&#38;&#38;(e.parentOwn=[],e.childrenOwn=[])}),e.relations.forEach(t=&#62;{var n=e.nodes.filter(e=&#62;e.id==t.fromNode)[0],r=e.nodes.filter(e=&#62;e.id==t.toNode)[0];n&#38;&#38;r&#38;&#38;(&#39;Spouse&#39;==t.type&#38;&#38;(n.spouses.push({relation:t,node:r}),r.spouses.push({relation:t,node:n})),&#39;Parent&#39;==t.type&#38;&#38;(n.children.push({relation:t,node:r}),r.parents.push({relation:t,node:n})),&#39;Ownerhip&#39;==t.type&#38;&#38;(n.childrenOwn.push({relation:t,node:r}),r.parentOwn.push({relation:t,node:n})))})}function getParentPercentage(e,t){return function e(n,r){return n==t?r:n.childrenOwn.map(t=&#62;e(t.node,t.relation.ownerpercentage*r/100)).reduce((e,t)=&#62;e+t,0)}(e,100)}function getStockPercentage(e,t,n){!function e(r,a){r!=t&#38;&#38;(r.childrenOwn.filter(e=&#62;e.node==t).forEach(e=&#62;{e.relation.shares.forEach(e=&#62;{n[e.type]=(n[e.type]||0)+a*e.amountPercentage/100})}),r.childrenOwn.filter(e=&#62;e.node!=t).forEach(t=&#62;e(t.node,t.relation.ownerpercentage*a/100)))}(e,100)}function getParents(e){return(e.parents||[]).map(e=&#62;getParents(e.node)).reduce((e,t)=&#62;e.concat(t),[e])}function getChildren(e){return(e.children||[]).map(e=&#62;getChildren(e.node)).reduce((e,t)=&#62;e.concat(t),[e])}markRelations(params.graph);var fromNode=params.graph.nodes.filter(e=&#62;e.id==params.from.id)[0],toNode=params.graph.nodes.filter(e=&#62;e.id==params.to.id)[0],relatives=getParents(toNode);relatives=relatives.concat(getChildren(toNode)),toNode.spouses.forEach(e=&#62;{relatives=(relatives=relatives.concat(getParents(e))).concat(getChildren(e))});let uniqueRelatives=[...new Set(relatives)];var maxFamilyOwnership=0,maxFamilyStockPercentage={};function calculateOwnersip(e){var t=getParentPercentage(e,fromNode);e.spouses.forEach(e=&#62;t+=getParentPercentage(e.node,fromNode));var n={};return getStockPercentage(e,fromNode,n),e.spouses.forEach(e=&#62;getStockPercentage(e.node,fromNode,n)),{relativeOwnership:t,relativeStockPercentage:n}}uniqueRelatives.forEach(e=&#62;{var t=calculateOwnersip(e);maxFamilyOwnership=Math.max(maxFamilyOwnership,t.relativeOwnership),Object.keys(t.relativeStockPercentage).forEach(function(e){maxFamilyStockPercentage[e]=Math.max(maxFamilyStockPercentage[e]||0,t.relativeStockPercentage[e])})});var recepientOwnership=calculateOwnersip(toNode),outputdata={houseHold:{totalOwnership:recepientOwnership.relativeOwnership,tolalStockPercentage:recepientOwnership.relativeStockPercentage},family:{totalOwnership:maxFamilyOwnership,tolalStockPercentage:maxFamilyStockPercentage}};outputdata;&#34;" resultVariable="script" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_04elwf4</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_04elwf4" sourceRef="Activity_0xo7wrd" targetRef="make-request" />
+    <bpmn:endEvent id="Event_1gext2n">
+      <bpmn:incoming>Flow_0zylk6w</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0zylk6w" sourceRef="Activity_0hzy12d" targetRef="Event_1gext2n" />
+    <bpmn:scriptTask id="Activity_0hzy12d" name="find max ownership percentage">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=max(result.houseHold.totalOwnership,result.houseHold.tolalStockPercentage.nominal,result.houseHold.tolalStockPercentage.preferred1,result.family.totalOwnership,result.family.tolalStockPercentage.nominal,result.family.tolalStockPercentage.preferred1)" resultVariable="rMaxOwnershipPercentage" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1dho4ta</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zylk6w</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_15egrek" sourceRef="make-request" targetRef="Activity_0dto4ai" />
+    <bpmn:sequenceFlow id="Flow_1dho4ta" sourceRef="Activity_0dto4ai" targetRef="Activity_0hzy12d" />
+    <bpmn:scriptTask id="Activity_0dto4ai">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=result.result" resultVariable="result" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_15egrek</bpmn:incoming>
+      <bpmn:outgoing>Flow_1dho4ta</bpmn:outgoing>
+    </bpmn:scriptTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="find_max_family_ownership">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="158" y="145" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0le5362_di" bpmnElement="make-request">
+        <dc:Bounds x="260" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xo7wrd_di" bpmnElement="Activity_0xo7wrd">
+        <dc:Bounds x="260" y="-100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1gext2n_di" bpmnElement="Event_1gext2n">
+        <dc:Bounds x="672" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_13s4hxq_di" bpmnElement="Activity_0hzy12d">
+        <dc:Bounds x="540" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1f1082p_di" bpmnElement="Activity_0dto4ai">
+        <dc:Bounds x="410" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1acdqfc_di" bpmnElement="Flow_1">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="224" y="120" />
+        <di:waypoint x="224" y="-60" />
+        <di:waypoint x="260" y="-60" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04elwf4_di" bpmnElement="Flow_04elwf4">
+        <di:waypoint x="310" y="-20" />
+        <di:waypoint x="310" y="80" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zylk6w_di" bpmnElement="Flow_0zylk6w">
+        <di:waypoint x="640" y="120" />
+        <di:waypoint x="672" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15egrek_di" bpmnElement="Flow_15egrek">
+        <di:waypoint x="360" y="120" />
+        <di:waypoint x="410" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dho4ta_di" bpmnElement="Flow_1dho4ta">
+        <di:waypoint x="510" y="120" />
+        <di:waypoint x="540" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

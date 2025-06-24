@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1x5lgqd" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="6e26945" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0">
+  <decision id="simplified_recipient_lowTaxResidence" name="lowtax_recipient_WHT_aa_check_NLD">
+    <informationRequirement id="InformationRequirement_0jlzywp">
+      <requiredInput href="#InputData_0n2638s" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0lqjbfn" hitPolicy="FIRST">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>rResidence</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_05c71cl">
+          <text>"AIA","BHS","BHR","BRB","VGB","CYM","GGY","IMN","JEY","TCA","VUT","ASM","ATG","BLZ","FJI","GUM","PLW","PAN","RUS","WSM","SEY","TTO","VIR"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" name="rLowTaxResidence" typeRef="boolean" />
+      <rule id="DecisionRule_0v4923s">
+        <inputEntry id="UnaryTests_1jqyxgg">
+          <text>"AIA","BHS","BHR","BRB","VGB","CYM","GGY","IMN","JEY","TCA","VUT","ASM","ATG","BLZ","FJI","GUM","PLW","PAN","RUS","WSM","SEY","TTO","VIR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cq8d1n">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10k2e9n">
+        <inputEntry id="UnaryTests_0blrcn2">
+          <text>not("AIA","BHS","BHR","BRB","VGB","CYM","GGY","IMN","JEY","TCA","VUT","ASM","ATG","BLZ","FJI","GUM","PLW","PAN","RUS","WSM","SEY","TTO","VIR")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ul4k1o">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0n2638s" name="rResidence" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="simplified_recipient_lowTaxResidence">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_00nc2m8" dmnElementRef="InputData_0n2638s">
+        <dc:Bounds height="45" width="125" x="187" y="278" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_10ppiy4" dmnElementRef="InformationRequirement_0jlzywp">
+        <di:waypoint x="250" y="278" />
+        <di:waypoint x="250" y="200" />
+        <di:waypoint x="250" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

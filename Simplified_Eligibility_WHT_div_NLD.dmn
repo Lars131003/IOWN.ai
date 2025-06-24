@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_0ts500m" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="6e26945" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0">
+  <decision id="Simplified_Eligibility_WHT_div_NLD" name="Simplified_Eligibility_WHT_div_NLD">
+    <informationRequirement id="InformationRequirement_07gg4wd">
+      <requiredInput href="#InputData_0c6qo2j" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1qhdbfl" hitPolicy="FIRST">
+      <input id="InputClause_05j1xgi" label="payorRegulatoryStatus">
+        <inputExpression id="LiteralExpression_0xkgj5q" typeRef="string">
+          <text>pRegulatoryStatus</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1x8utmf" name="sEligibilityWHTDivNLD" typeRef="boolean" />
+      <rule id="DecisionRule_1darbpb">
+        <inputEntry id="UnaryTests_1rqc3mc">
+          <text>"AIF","ICBE","VBI"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ofvokz">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0jd1qn7">
+        <inputEntry id="UnaryTests_16b9169">
+          <text>not("AIF","ICBE","VBI")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0uqcpxg">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0c6qo2j" name="pRegulatoryStatus" />
+  <textAnnotation id="TextAnnotation_0wo5g9f">
+    <text>regulatory status includes: VBI, ICBE, AIF</text>
+  </textAnnotation>
+  <association id="Association_0avg8ib">
+    <sourceRef href="#TextAnnotation_0wo5g9f" />
+    <targetRef href="#Simplified_Eligibility_WHT_div_NLD" />
+  </association>
+  <textAnnotation id="TextAnnotation_14nhw6o">
+    <text>reverse hybrids are not included</text>
+  </textAnnotation>
+  <association id="Association_0usi47p">
+    <sourceRef href="#TextAnnotation_14nhw6o" />
+    <targetRef href="#Simplified_Eligibility_WHT_div_NLD" />
+  </association>
+  <textAnnotation id="TextAnnotation_1o9nje0">
+    <text>Simplification with regard to VBI profits. Distributions of PRE or post VBi profit are taxed. Distributions are not taxed when ditributuions exceed post/pre VBI profits. And</text>
+  </textAnnotation>
+  <association id="Association_0rsfpen">
+    <sourceRef href="#TextAnnotation_1o9nje0" />
+    <targetRef href="#Simplified_Eligibility_WHT_div_NLD" />
+  </association>
+  <textAnnotation id="TextAnnotation_1du1omg">
+    <text>simplify legal personality - FGR, VBI  - no FCR, no legal classification</text>
+  </textAnnotation>
+  <association id="Association_05n6ha6">
+    <sourceRef href="#TextAnnotation_1du1omg" />
+    <targetRef href="#Simplified_Eligibility_WHT_div_NLD" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="DMNShape_0u5slgg" dmnElementRef="Simplified_Eligibility_WHT_div_NLD">
+        <dc:Bounds height="80" width="180" x="310" y="430" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1bl1qjx" dmnElementRef="TextAnnotation_0wo5g9f">
+        <dc:Bounds height="80" width="100" x="170" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1yg7r1y" dmnElementRef="Association_0avg8ib">
+        <di:waypoint x="241" y="160" />
+        <di:waypoint x="379" y="430" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0ju0ccv" dmnElementRef="TextAnnotation_14nhw6o">
+        <dc:Bounds height="80" width="100" x="160" y="220" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1dnfkfh" dmnElementRef="Association_0usi47p">
+        <di:waypoint x="246" y="300" />
+        <di:waypoint x="364" y="430" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1nyvavb" dmnElementRef="InputData_0c6qo2j">
+        <dc:Bounds height="45" width="125" x="337" y="637" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1uv422f" dmnElementRef="InformationRequirement_07gg4wd">
+        <di:waypoint x="400" y="637" />
+        <di:waypoint x="400" y="530" />
+        <di:waypoint x="400" y="510" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1x94yys" dmnElementRef="TextAnnotation_1o9nje0">
+        <dc:Bounds height="140" width="240" x="510" y="210" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1gr56xp" dmnElementRef="Association_0rsfpen">
+        <di:waypoint x="510" y="319" />
+        <di:waypoint x="429" y="430" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1mzjbjz" dmnElementRef="TextAnnotation_1du1omg">
+        <dc:Bounds height="100" width="190" x="490" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0bjuugp" dmnElementRef="Association_05n6ha6">
+        <di:waypoint x="515" y="200" />
+        <di:waypoint x="417" y="430" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

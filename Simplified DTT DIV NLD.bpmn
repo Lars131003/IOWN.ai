@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="8d36a4d" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <bpmn:process id="Simplified_DTT_DIV_NLD_BPMN" name="Simplified DTT DIV NLD" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1hf8uza</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="Gateway_1icgwcd">
+      <bpmn:incoming>Flow_0dv8wdi</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vkx88b</bpmn:outgoing>
+      <bpmn:outgoing>Flow_04maipl</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0imt1mu</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1r612yi</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0vkx88b" sourceRef="Gateway_1icgwcd" targetRef="Activity_1ssfcp8">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=pResidence = "NLD" and rResidence = "ESP" or pResidence = "ESP" and rResidence = "NLD"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_04maipl" sourceRef="Gateway_1icgwcd" targetRef="Activity_150fbd3">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=pResidence = "NLD" and rResidence = "USA" or pResidence = "USA" and rResidence = "NLD"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0imt1mu" sourceRef="Gateway_1icgwcd" targetRef="Treaty_NLD_CHI">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=pResidence = "NLD" and rResidence = "CHI" or pResidence = "CHI" and rResidence = "NLD"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="Gateway_1qrt9s2">
+      <bpmn:incoming>Flow_163yice</bpmn:incoming>
+      <bpmn:incoming>Flow_0070lox</bpmn:incoming>
+      <bpmn:incoming>Flow_1snvr1f</bpmn:incoming>
+      <bpmn:incoming>Flow_0wgv8l7</bpmn:incoming>
+      <bpmn:outgoing>Flow_075berz</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_163yice" sourceRef="Activity_1ssfcp8" targetRef="Gateway_1qrt9s2" />
+    <bpmn:sequenceFlow id="Flow_0070lox" sourceRef="Treaty_NLD_CHI" targetRef="Gateway_1qrt9s2" />
+    <bpmn:sequenceFlow id="Flow_1snvr1f" sourceRef="Activity_150fbd3" targetRef="Gateway_1qrt9s2" />
+    <bpmn:scriptTask id="Activity_1oc3epl" name="notification no treaty rate">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=if dividendCrossBorderNLD = false then &#34;National_Dividend&#34; else&#10;  if prResidentTreatyNation = false then &#34;No_Treaty&#34; else &#34;Treaty_Not_Modelled&#34; " resultVariable="notificationNoTreatyRate" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1wei5y6</bpmn:incoming>
+      <bpmn:incoming>Flow_1s7h334</bpmn:incoming>
+      <bpmn:incoming>Flow_0w7q27m</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wznmmz</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="Gateway_07kr6y2">
+      <bpmn:incoming>Flow_0t29pgh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1wei5y6</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0w7lbg6</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0t29pgh" sourceRef="Activity_0osp7nh" targetRef="Gateway_07kr6y2" />
+    <bpmn:scriptTask id="Activity_0osp7nh" name="check if divided is cross border">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=rResidence != pResidence" resultVariable="dividendCrossBorderNLD" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_13j1l9g</bpmn:incoming>
+      <bpmn:outgoing>Flow_0t29pgh</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_1wei5y6" sourceRef="Gateway_07kr6y2" targetRef="Activity_1oc3epl">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=dividendCrossBorderNLD = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0w7lbg6" sourceRef="Gateway_07kr6y2" targetRef="Activity_02v0y19">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=dividendCrossBorderNLD = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="Gateway_0g4wom4">
+      <bpmn:incoming>Flow_1u602m1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1s7h334</bpmn:outgoing>
+      <bpmn:outgoing>Flow_14jnvpr</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1u602m1" sourceRef="Activity_02v0y19" targetRef="Gateway_0g4wom4" />
+    <bpmn:sequenceFlow id="Flow_1s7h334" sourceRef="Gateway_0g4wom4" targetRef="Activity_1oc3epl">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rpTreatyStateNLD = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_14jnvpr" sourceRef="Gateway_0g4wom4" targetRef="check_if_the_treaty_is_modelled">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rpTreatyStateNLD = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="Gateway_0kgq6hx">
+      <bpmn:incoming>Flow_048j23b</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dv8wdi</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0w7q27m</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_048j23b" sourceRef="check_if_the_treaty_is_modelled" targetRef="Gateway_0kgq6hx" />
+    <bpmn:sequenceFlow id="Flow_0dv8wdi" sourceRef="Gateway_0kgq6hx" targetRef="Gateway_1icgwcd">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rpModelledTreatyStateNLD = true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0w7q27m" sourceRef="Gateway_0kgq6hx" targetRef="Activity_1oc3epl">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=rpModelledTreatyStateNLD = false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:businessRuleTask id="Activity_150fbd3" name="treaty NLD - USA">
+      <bpmn:extensionElements>
+        <zeebe:calledDecision decisionId="simplified_dividend_treaty_rates_NLD_USA_Check" resultVariable="treatyRatesNLDUSA" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_04maipl</bpmn:incoming>
+      <bpmn:outgoing>Flow_1snvr1f</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:businessRuleTask id="Activity_1ssfcp8" name="treaty NLD - ESP">
+      <bpmn:extensionElements>
+        <zeebe:calledDecision decisionId="simplified_dividend_treaty_rates_NLD_ESP_check" resultVariable="treatyRateNLDESP" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0vkx88b</bpmn:incoming>
+      <bpmn:outgoing>Flow_163yice</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:businessRuleTask id="Treaty_NLD_CHI" name="treaty NLD - CHI">
+      <bpmn:extensionElements>
+        <zeebe:calledDecision decisionId="simplified_dividend_treaty_rates_NLD_CHI" resultVariable="treatyRateNLDCHI" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0imt1mu</bpmn:incoming>
+      <bpmn:outgoing>Flow_0070lox</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:endEvent id="Event_1u4whlt">
+      <bpmn:incoming>Flow_0syc2ul</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_075berz" sourceRef="Gateway_1qrt9s2" targetRef="Activity_0b9c3da" />
+    <bpmn:scriptTask id="Activity_0b9c3da" name="WHT after treaty">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=min(min(treatyRateNLDCHI,treatyRateNLDESP,treatyRatesNLDUSA,treatyRateNLDCHE) * dividendAmmount,totalForeingTaxAmmount)" resultVariable="foreingWHTammount" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_075berz</bpmn:incoming>
+      <bpmn:outgoing>Flow_0syc2ul</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_0syc2ul" sourceRef="Activity_0b9c3da" targetRef="Event_1u4whlt" />
+    <bpmn:endEvent id="Event_0799ggi">
+      <bpmn:incoming>Flow_0wznmmz</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0wznmmz" sourceRef="Activity_1oc3epl" targetRef="Event_0799ggi" />
+    <bpmn:sequenceFlow id="Flow_1hf8uza" sourceRef="StartEvent_1" targetRef="Activity_0szs9n3" />
+    <bpmn:sequenceFlow id="Flow_13j1l9g" sourceRef="Activity_0szs9n3" targetRef="Activity_0osp7nh" />
+    <bpmn:scriptTask id="Activity_0szs9n3" name="tax ammount covered by treaty">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=if IncomeTaxFINLD != 0 then IncomeTaxFINLD else SimplifiedWHTNLDAmmount" resultVariable="totalForeingTaxAmmount" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1hf8uza</bpmn:incoming>
+      <bpmn:outgoing>Flow_13j1l9g</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:callActivity id="Activity_02v0y19" name="check if there is a treaty">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="treaty_states_NLD" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0w7lbg6</bpmn:incoming>
+      <bpmn:outgoing>Flow_1u602m1</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="check_if_the_treaty_is_modelled" name="check if the treaty is modelled">
+      <bpmn:extensionElements>
+        <zeebe:calledElement processId="modelled_treaties_NLD" propagateAllChildVariables="true" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_14jnvpr</bpmn:incoming>
+      <bpmn:outgoing>Flow_048j23b</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_1r612yi" sourceRef="Gateway_1icgwcd" targetRef="Activity_144f6la">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=pResidence = "NLD" and rResidence = "CHE" or pResidence = "CHE" and rResidence = "NLD"</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0wgv8l7" sourceRef="Activity_144f6la" targetRef="Gateway_1qrt9s2" />
+    <bpmn:businessRuleTask id="Activity_144f6la" name="treaty NLD CHE">
+      <bpmn:extensionElements>
+        <zeebe:calledDecision decisionId="dividend_treaty_rates_Check_NLD_CHE" resultVariable="treatyRateNLDCHE" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1r612yi</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wgv8l7</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:textAnnotation id="TextAnnotation_0igctvo">
+      <bpmn:text>Bypass for purely national situations</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_02jbgtj" associationDirection="None" sourceRef="Flow_1wei5y6" targetRef="TextAnnotation_0igctvo" />
+    <bpmn:textAnnotation id="TextAnnotation_0qr2k61">
+      <bpmn:text>add total foreign wht ammount</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0w17zv5" associationDirection="None" sourceRef="Activity_0szs9n3" targetRef="TextAnnotation_0qr2k61" />
+    <bpmn:textAnnotation id="TextAnnotation_1qisu69">
+      <bpmn:text>might need modifications</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_19j15il" associationDirection="None" sourceRef="Activity_1ssfcp8" targetRef="TextAnnotation_1qisu69" />
+    <bpmn:textAnnotation id="TextAnnotation_1pgrqco">
+      <bpmn:text>definitely needs modifications</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0vd58w6" associationDirection="None" sourceRef="Activity_150fbd3" targetRef="TextAnnotation_1pgrqco" />
+    <bpmn:textAnnotation id="TextAnnotation_1hjdtk7">
+      <bpmn:text>change amount to single m</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1b2q1w7" associationDirection="None" sourceRef="Activity_0szs9n3" targetRef="TextAnnotation_1hjdtk7" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Simplified_DTT_DIV_NLD_BPMN">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="-798" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1icgwcd_di" bpmnElement="Gateway_1icgwcd" isMarkerVisible="true">
+        <dc:Bounds x="185" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1qrt9s2_di" bpmnElement="Gateway_1qrt9s2" isMarkerVisible="true">
+        <dc:Bounds x="585" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xdnp2a_di" bpmnElement="Activity_1oc3epl">
+        <dc:Bounds x="660" y="280" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_07kr6y2_di" bpmnElement="Gateway_07kr6y2" isMarkerVisible="true">
+        <dc:Bounds x="-385" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07ywn9f_di" bpmnElement="Activity_0osp7nh">
+        <dc:Bounds x="-520" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0g4wom4_di" bpmnElement="Gateway_0g4wom4" isMarkerVisible="true">
+        <dc:Bounds x="-165" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0kgq6hx_di" bpmnElement="Gateway_0kgq6hx" isMarkerVisible="true">
+        <dc:Bounds x="75" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02ujnnq_di" bpmnElement="Activity_150fbd3">
+        <dc:Bounds x="360" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0atpb03_di" bpmnElement="Activity_1ssfcp8">
+        <dc:Bounds x="360" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18wda8a_di" bpmnElement="Treaty_NLD_CHI">
+        <dc:Bounds x="360" y="-30" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1u4whlt_di" bpmnElement="Event_1u4whlt">
+        <dc:Bounds x="812" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1i7qujb_di" bpmnElement="Activity_0b9c3da">
+        <dc:Bounds x="660" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0799ggi_di" bpmnElement="Event_0799ggi">
+        <dc:Bounds x="812" y="302" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1yqzzk6_di" bpmnElement="Activity_0szs9n3">
+        <dc:Bounds x="-700" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08mjw5r_di" bpmnElement="Activity_02v0y19">
+        <dc:Bounds x="-300" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0lwa9t5_di" bpmnElement="check_if_the_treaty_is_modelled">
+        <dc:Bounds x="-90" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1dptq5i_di" bpmnElement="Activity_144f6la">
+        <dc:Bounds x="360" y="-150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_02jbgtj_di" bpmnElement="Association_02jbgtj">
+        <di:waypoint x="62" y="344" />
+        <di:waypoint x="270" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0qr2k61_di" bpmnElement="TextAnnotation_0qr2k61">
+        <dc:Bounds x="-600" y="-10" width="100" height="54" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1qisu69_di" bpmnElement="TextAnnotation_1qisu69">
+        <dc:Bounds x="470" y="30" width="100" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1pgrqco_di" bpmnElement="TextAnnotation_1pgrqco">
+        <dc:Bounds x="470" y="140" width="100" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1hjdtk7_di" bpmnElement="TextAnnotation_1hjdtk7">
+        <dc:Bounds x="-600" y="-70" width="99.96928746928748" height="36.85503685503686" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0vkx88b_di" bpmnElement="Flow_0vkx88b">
+        <di:waypoint x="235" y="118" />
+        <di:waypoint x="360" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04maipl_di" bpmnElement="Flow_04maipl">
+        <di:waypoint x="210" y="143" />
+        <di:waypoint x="210" y="230" />
+        <di:waypoint x="360" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0imt1mu_di" bpmnElement="Flow_0imt1mu">
+        <di:waypoint x="210" y="93" />
+        <di:waypoint x="210" y="10" />
+        <di:waypoint x="360" y="10" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_163yice_di" bpmnElement="Flow_163yice">
+        <di:waypoint x="460" y="118" />
+        <di:waypoint x="585" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0070lox_di" bpmnElement="Flow_0070lox">
+        <di:waypoint x="460" y="10" />
+        <di:waypoint x="610" y="10" />
+        <di:waypoint x="610" y="93" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1snvr1f_di" bpmnElement="Flow_1snvr1f">
+        <di:waypoint x="460" y="230" />
+        <di:waypoint x="610" y="230" />
+        <di:waypoint x="610" y="143" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0t29pgh_di" bpmnElement="Flow_0t29pgh">
+        <di:waypoint x="-420" y="118" />
+        <di:waypoint x="-385" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wei5y6_di" bpmnElement="Flow_1wei5y6">
+        <di:waypoint x="-360" y="143" />
+        <di:waypoint x="-360" y="320" />
+        <di:waypoint x="660" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0w7lbg6_di" bpmnElement="Flow_0w7lbg6">
+        <di:waypoint x="-335" y="118" />
+        <di:waypoint x="-300" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1u602m1_di" bpmnElement="Flow_1u602m1">
+        <di:waypoint x="-200" y="118" />
+        <di:waypoint x="-165" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1s7h334_di" bpmnElement="Flow_1s7h334">
+        <di:waypoint x="-140" y="143" />
+        <di:waypoint x="-140" y="320" />
+        <di:waypoint x="660" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14jnvpr_di" bpmnElement="Flow_14jnvpr">
+        <di:waypoint x="-115" y="118" />
+        <di:waypoint x="-90" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_048j23b_di" bpmnElement="Flow_048j23b">
+        <di:waypoint x="10" y="118" />
+        <di:waypoint x="75" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dv8wdi_di" bpmnElement="Flow_0dv8wdi">
+        <di:waypoint x="125" y="118" />
+        <di:waypoint x="185" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0w7q27m_di" bpmnElement="Flow_0w7q27m">
+        <di:waypoint x="100" y="143" />
+        <di:waypoint x="100" y="320" />
+        <di:waypoint x="660" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_075berz_di" bpmnElement="Flow_075berz">
+        <di:waypoint x="635" y="118" />
+        <di:waypoint x="660" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0syc2ul_di" bpmnElement="Flow_0syc2ul">
+        <di:waypoint x="760" y="118" />
+        <di:waypoint x="812" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wznmmz_di" bpmnElement="Flow_0wznmmz">
+        <di:waypoint x="760" y="320" />
+        <di:waypoint x="812" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hf8uza_di" bpmnElement="Flow_1hf8uza">
+        <di:waypoint x="-762" y="118" />
+        <di:waypoint x="-700" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_13j1l9g_di" bpmnElement="Flow_13j1l9g">
+        <di:waypoint x="-600" y="118" />
+        <di:waypoint x="-520" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1r612yi_di" bpmnElement="Flow_1r612yi">
+        <di:waypoint x="210" y="93" />
+        <di:waypoint x="210" y="-110" />
+        <di:waypoint x="360" y="-110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wgv8l7_di" bpmnElement="Flow_0wgv8l7">
+        <di:waypoint x="460" y="-110" />
+        <di:waypoint x="610" y="-110" />
+        <di:waypoint x="610" y="93" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0w17zv5_di" bpmnElement="Association_0w17zv5">
+        <di:waypoint x="-615" y="78" />
+        <di:waypoint x="-585" y="44" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_19j15il_di" bpmnElement="Association_19j15il">
+        <di:waypoint x="459" y="85" />
+        <di:waypoint x="482" y="70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0vd58w6_di" bpmnElement="Association_0vd58w6">
+        <di:waypoint x="459" y="197" />
+        <di:waypoint x="483" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1b2q1w7_di" bpmnElement="Association_1b2q1w7">
+        <di:waypoint x="-627" y="78" />
+        <di:waypoint x="-563" y="-33" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0igctvo_di" bpmnElement="TextAnnotation_0igctvo">
+        <dc:Bounds x="220" y="450" width="100" height="54" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

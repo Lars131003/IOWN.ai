@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_05j22ep" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="67676d0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="payor_Check_domestic_qualification_not_NLD_residence" name="Check domestic qualification not NLD residence">
+    <informationRequirement id="InformationRequirement_0coykf9">
+      <requiredInput href="#InputData_1e8jhfe" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0std6uv">
+      <requiredInput href="#InputData_1bdnw7p" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0qpq8sa">
+      <requiredInput href="#InputData_16s3g0l" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0bc2qbv" hitPolicy="FIRST">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>pDomesticTaxQualification</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_07s68oo">
+          <text>"Transparent","Opaque"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1dz9gio">
+        <inputExpression id="LiteralExpression_0p725wm" typeRef="string">
+          <text>pResidence</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1bfw77e">
+        <inputExpression id="LiteralExpression_1fdf3rn" typeRef="string">
+          <text>pUsTaxQualifications</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="pForeingRecipientsDomesticQualification" typeRef="string" biodi:width="192">
+        <outputValues id="UnaryTests_0kdid70">
+          <text>"Opaque","Transparent"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_06rx8m6">
+        <inputEntry id="UnaryTests_0ek3vfq">
+          <text>"Transparent"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ilqpx3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jysail">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pscwxe">
+          <text>"Transparent"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_059gk65">
+        <inputEntry id="UnaryTests_0i8uw9k">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05gjuz3">
+          <text>"USA"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0e46ldh">
+          <text>"Partnership"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00k8anc">
+          <text>"Transparent"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ktgbvm">
+        <inputEntry id="UnaryTests_1142qlj">
+          <text>"Opaque"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06t776v">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0maah8o">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0lx9dz7">
+          <text>"Opaque"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0dgr57j">
+        <inputEntry id="UnaryTests_0kbyerv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0d0t1al">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1p78xyd">
+          <text>"Corporation"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05dtxrh">
+          <text>"Opaque"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1e8jhfe" name="pDomesticTaxQualification" />
+  <inputData id="InputData_1bdnw7p" name="pResidence" />
+  <inputData id="InputData_16s3g0l" name="pUsTaxQualifications" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="payor_Check_domestic_qualification_not_NLD_residence">
+        <dc:Bounds height="80" width="180" x="370" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0189ebu" dmnElementRef="InputData_1e8jhfe">
+        <dc:Bounds height="45" width="125" x="397" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1k4fd9w" dmnElementRef="InformationRequirement_0coykf9">
+        <di:waypoint x="460" y="337" />
+        <di:waypoint x="460" y="200" />
+        <di:waypoint x="460" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0gsv2a9" dmnElementRef="InputData_1bdnw7p">
+        <dc:Bounds height="45" width="125" x="637" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_120c2e6" dmnElementRef="InformationRequirement_0std6uv">
+        <di:waypoint x="700" y="337" />
+        <di:waypoint x="505" y="200" />
+        <di:waypoint x="505" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0cz4ygd" dmnElementRef="InputData_16s3g0l">
+        <dc:Bounds height="45" width="125" x="157" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1ds6lof" dmnElementRef="InformationRequirement_0qpq8sa">
+        <di:waypoint x="220" y="337" />
+        <di:waypoint x="415" y="200" />
+        <di:waypoint x="415" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

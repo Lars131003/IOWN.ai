@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="22173ef" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <bpmn:process id="treaty_states_NLD" name="treaty states NLD" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_140fvbe</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_140fvbe" sourceRef="StartEvent_1" targetRef="Gateway_0pvmmgz" />
+    <bpmn:sequenceFlow id="Flow_1bnccuk" sourceRef="Gateway_0pvmmgz" targetRef="Activity_0srw9cw" />
+    <bpmn:sequenceFlow id="Flow_0cjf3na" sourceRef="Activity_0srw9cw" targetRef="Gateway_1fhlaos" />
+    <bpmn:parallelGateway id="Gateway_0pvmmgz">
+      <bpmn:incoming>Flow_140fvbe</bpmn:incoming>
+      <bpmn:outgoing>Flow_1bnccuk</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1eb5etk</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:parallelGateway id="Gateway_1fhlaos">
+      <bpmn:incoming>Flow_0cjf3na</bpmn:incoming>
+      <bpmn:incoming>Flow_1usvakf</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qhmpo2</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_1eb5etk" sourceRef="Gateway_0pvmmgz" targetRef="Activity_03tg7m4" />
+    <bpmn:sequenceFlow id="Flow_1usvakf" sourceRef="Activity_03tg7m4" targetRef="Gateway_1fhlaos" />
+    <bpmn:sequenceFlow id="Flow_0qhmpo2" sourceRef="Gateway_1fhlaos" targetRef="Activity_16fayqz" />
+    <bpmn:endEvent id="Event_0eeayu5">
+      <bpmn:incoming>Flow_1xjweci</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1xjweci" sourceRef="Activity_16fayqz" targetRef="Event_0eeayu5" />
+    <bpmn:businessRuleTask id="Activity_0srw9cw" name="check treaty payor">
+      <bpmn:extensionElements>
+        <zeebe:calledDecision decisionId="simplified_payor_resident_treaty_nation" resultVariable="pResidentTreatyStateNLD" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1bnccuk</bpmn:incoming>
+      <bpmn:outgoing>Flow_0cjf3na</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:businessRuleTask id="Activity_03tg7m4" name="check treaty recipient">
+      <bpmn:extensionElements>
+        <zeebe:calledDecision decisionId="simplified_recipient_resident_treaty_nation" resultVariable="rResidentTreatyStateNLD" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1eb5etk</bpmn:incoming>
+      <bpmn:outgoing>Flow_1usvakf</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:scriptTask id="Activity_16fayqz" name="merge results">
+      <bpmn:extensionElements>
+        <zeebe:script expression="=pResidentTreatyStateNLD = true or rResidentTreatyStateNLD = true" resultVariable="rpTreatyStateNLD" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0qhmpo2</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xjweci</bpmn:outgoing>
+    </bpmn:scriptTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="treaty_states_NLD">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1fqx294_di" bpmnElement="Gateway_0pvmmgz">
+        <dc:Bounds x="245" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_089cb2e_di" bpmnElement="Gateway_1fhlaos">
+        <dc:Bounds x="525" y="93" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0eeayu5_di" bpmnElement="Event_0eeayu5">
+        <dc:Bounds x="812" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1014mlz_di" bpmnElement="Activity_0srw9cw">
+        <dc:Bounds x="360" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0g7q8nl_di" bpmnElement="Activity_03tg7m4">
+        <dc:Bounds x="360" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0b6d3r1_di" bpmnElement="Activity_16fayqz">
+        <dc:Bounds x="640" y="78" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_140fvbe_di" bpmnElement="Flow_140fvbe">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="245" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bnccuk_di" bpmnElement="Flow_1bnccuk">
+        <di:waypoint x="295" y="118" />
+        <di:waypoint x="360" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cjf3na_di" bpmnElement="Flow_0cjf3na">
+        <di:waypoint x="460" y="118" />
+        <di:waypoint x="525" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1eb5etk_di" bpmnElement="Flow_1eb5etk">
+        <di:waypoint x="270" y="143" />
+        <di:waypoint x="270" y="230" />
+        <di:waypoint x="360" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1usvakf_di" bpmnElement="Flow_1usvakf">
+        <di:waypoint x="460" y="230" />
+        <di:waypoint x="550" y="230" />
+        <di:waypoint x="550" y="143" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qhmpo2_di" bpmnElement="Flow_0qhmpo2">
+        <di:waypoint x="575" y="118" />
+        <di:waypoint x="640" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xjweci_di" bpmnElement="Flow_1xjweci">
+        <di:waypoint x="740" y="118" />
+        <di:waypoint x="812" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Similarity_check_partnerships" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="67676d0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="Similarity_check_partnerships_NLD_payor" name="Similarity check partnerships NLD payor">
+    <informationRequirement id="InformationRequirement_0vec6ae">
+      <requiredInput href="#InputData_0bi8vj4" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1tsx0av">
+      <requiredInput href="#InputData_0pql0u2" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0h1uwcl">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="boolean">
+          <text>pLegalPersonality</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1v6h0p8">
+        <inputExpression id="LiteralExpression_1ce4xff" typeRef="string">
+          <text>pMembersLiability</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1wqpn1t">
+          <text>"Depends on members","Limited liability","Unlimited liability"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" name="pSimilarToNLDPartnership" typeRef="boolean" biodi:width="192" />
+      <rule id="DecisionRule_09ur0tz">
+        <inputEntry id="UnaryTests_08gpmex">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fr7wih">
+          <text>"Depends on members" or "Unlimited liability"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kma2eo">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0sineaq">
+        <inputEntry id="UnaryTests_1oixu26">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0t5lzrs">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lpor1h">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1b6loca">
+        <inputEntry id="UnaryTests_1rkjui5">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0i1isoa">
+          <text>"Limited liability"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ds242j">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0bi8vj4" name="pLegalPersonality" />
+  <inputData id="InputData_0pql0u2" name="pMembersLiability" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Similarity_check_partnerships_NLD_payor">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0jervz6" dmnElementRef="InputData_0bi8vj4">
+        <dc:Bounds height="45" width="125" x="157" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0ucdveb" dmnElementRef="InformationRequirement_0vec6ae">
+        <di:waypoint x="220" y="337" />
+        <di:waypoint x="220" y="200" />
+        <di:waypoint x="220" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_15q2yre" dmnElementRef="InputData_0pql0u2">
+        <dc:Bounds height="45" width="125" x="307" y="337" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1q81w35" dmnElementRef="InformationRequirement_1tsx0av">
+        <di:waypoint x="370" y="337" />
+        <di:waypoint x="280" y="200" />
+        <di:waypoint x="280" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

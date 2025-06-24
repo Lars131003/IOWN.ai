@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_13f7r4y" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="addcace" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="simplified_recipient_resident_treaty_check" name="simplified_recipient_resident_treaty_check">
+    <informationRequirement id="InformationRequirement_14p8r3o">
+      <requiredInput href="#InputData_0wt0tbn" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1dcxlml">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>rResidence</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0zcb60q">
+          <text>"ALB","DZA","AND","ARG","ARM","AUS","AZE","BHR","BGD","BRB","BLR","BEL","BIH","BRA","BGR","CAN","CHL","CYP","DNK","DEU","EGY","EST","ETH","PHL","FIN","FRA","GEO","GHA","GRC","HKG","HUN","IRL","ISL","IND","IDN","IRQ","ISR","ITA","JOR","KAZ","KWT","UNK","KOR","HRV","LIE","LVA","LTU","LUX","MYS","MLT","MAR","MEX","MDA","MNE","NZL","NGA","MKD","NOR","UKR","UZB","OMN","AUT","PAK","PAN","POL","PRT","QAT","ROU","SAU","SRB","SGP","SVK","SVN","ESP","LKA","SUR","TWN","THA","CZE","TUN","TUR","UGA","VEN","GBR","ARE","USA","VNM","ZMB","ZWE","ZAF","SWE","CHE"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" name="rResidentTreatyStateNLD" typeRef="boolean" />
+      <rule id="DecisionRule_04xea97">
+        <description>https://www.rijksoverheid.nl/documenten/circulaires/2023/03/09/verdragen-op-het-gebied-van-directe-belastingen</description>
+        <inputEntry id="UnaryTests_033e2of">
+          <text>"ALB"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ruzwyk">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0sr4lpl">
+        <inputEntry id="UnaryTests_0jvhyy5">
+          <text>"DZA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05hhiri">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05g1zjx">
+        <inputEntry id="UnaryTests_0hu3os4">
+          <text>"AND"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0t120of">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0bmnnut">
+        <inputEntry id="UnaryTests_0yodcxx">
+          <text>"ARG"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0usangu">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1r85db2">
+        <inputEntry id="UnaryTests_10ywgmz">
+          <text>"ARM"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0oesft7">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1jo9j3v">
+        <inputEntry id="UnaryTests_0nirwlm">
+          <text>"AUS"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03g5hhs">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nhnjnk">
+        <inputEntry id="UnaryTests_1qc3pz3">
+          <text>"AZE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14gpzh1">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_137v4a7">
+        <inputEntry id="UnaryTests_1lp50nu">
+          <text>"BHR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1uabwr5">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0x0x3qz">
+        <inputEntry id="UnaryTests_1pwbjwj">
+          <text>"BGD"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1n3h9xi">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ilrdrj">
+        <inputEntry id="UnaryTests_1s5hi6e">
+          <text>"BRB"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_02dwv7u">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xlh6t6">
+        <inputEntry id="UnaryTests_144vxca">
+          <text>"BLR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ckjbgg">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_18li4yt">
+        <inputEntry id="UnaryTests_19zr1r7">
+          <text>"BEL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1f3nnc8">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06bv2y4">
+        <inputEntry id="UnaryTests_0wj17nd">
+          <text>"BIH"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16hlcj5">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0z55blq">
+        <inputEntry id="UnaryTests_0vqai40">
+          <text>"BRA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0nsco6p">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1m7oz1h">
+        <inputEntry id="UnaryTests_08j0qcs">
+          <text>"BGR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_105x2un">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05bgq92">
+        <inputEntry id="UnaryTests_1mzeu9v">
+          <text>"CAN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ofr09t">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1il8170">
+        <inputEntry id="UnaryTests_1sdd8fl">
+          <text>"CHL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1xh4bte">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1p5xo2c">
+        <inputEntry id="UnaryTests_00eguq9">
+          <text>"CYP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_002c5ft">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1afeg7u">
+        <inputEntry id="UnaryTests_1m62dh9">
+          <text>"DNK"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1eit7yd">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1mljrse">
+        <inputEntry id="UnaryTests_0ksshkk">
+          <text>"DEU"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0yffe63">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_09trhmt">
+        <inputEntry id="UnaryTests_11fcmwi">
+          <text>"EGY"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1fnpiz6">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0m6yyw1">
+        <inputEntry id="UnaryTests_1p0nrfj">
+          <text>"EST"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_18wq4hc">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0uck8yu">
+        <inputEntry id="UnaryTests_1gto63h">
+          <text>"ETH"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0g9ew9z">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07zmq6i">
+        <inputEntry id="UnaryTests_1rs95du">
+          <text>"PHL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11tmtic">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1hg4h3y">
+        <inputEntry id="UnaryTests_1ggwzbn">
+          <text>"FIN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1073047">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1k800do">
+        <inputEntry id="UnaryTests_0m5rmdo">
+          <text>"FRA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_12eg3sy">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1arsgo0">
+        <inputEntry id="UnaryTests_024gxxx">
+          <text>"GEO"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0set0k0">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0t5qy7z">
+        <inputEntry id="UnaryTests_0j8y6uy">
+          <text>"GHA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vwqa1h">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0jy332e">
+        <inputEntry id="UnaryTests_17hidwt">
+          <text>"GRC"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0v42e75">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0f6agf7">
+        <inputEntry id="UnaryTests_0e4him3">
+          <text>"HKG"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1xq8yz6">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1597o5i">
+        <inputEntry id="UnaryTests_0dgrjcb">
+          <text>"HUN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jf1p95">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07de7om">
+        <inputEntry id="UnaryTests_0hu1u5t">
+          <text>"IRL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17in5vf">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ot3v7m">
+        <inputEntry id="UnaryTests_1m3gp5n">
+          <text>"ISL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05591jf">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ysz0b4">
+        <inputEntry id="UnaryTests_0ebgrxh">
+          <text>"IND"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1m3bbhw">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1kd0yvv">
+        <inputEntry id="UnaryTests_18myg54">
+          <text>"IDN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1212xs1">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01sdgzq">
+        <inputEntry id="UnaryTests_0p51ygw">
+          <text>"IRQ"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0v5dlqg">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0m8hudj">
+        <inputEntry id="UnaryTests_0urkxoq">
+          <text>"ISR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xr7f6r">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_19w5os9">
+        <inputEntry id="UnaryTests_10ja464">
+          <text>"ITA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0064rvy">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0zi2786">
+        <inputEntry id="UnaryTests_18uyxks">
+          <text>"JPN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ojswh5">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0kfp9kj">
+        <inputEntry id="UnaryTests_1slx6o4">
+          <text>"JOR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0lkfc1o">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1amwpsp">
+        <inputEntry id="UnaryTests_0pxjuk4">
+          <text>"KAZ"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_12gd9yn">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_033rlmh">
+        <inputEntry id="UnaryTests_0xx4zil">
+          <text>"KWT"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1k0xv6j">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1chcxje">
+        <inputEntry id="UnaryTests_1jbw7ai">
+          <text>"KOR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0g5nc4l">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0namqgn">
+        <description>* Kosovo</description>
+        <inputEntry id="UnaryTests_0z10sjp">
+          <text>"UNK"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1uyrppx">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0sziq3d">
+        <inputEntry id="UnaryTests_0fs2yo8">
+          <text>"HRV"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00kd1xi">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0vwnjdv">
+        <inputEntry id="UnaryTests_1w5gqgw">
+          <text>"LVA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bylnxq">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_098c9ix">
+        <inputEntry id="UnaryTests_1ek1xp7">
+          <text>"LIE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03x6qf4">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ztpj36">
+        <inputEntry id="UnaryTests_1ayrskw">
+          <text>"LTU"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zah65j">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0a4a9nh">
+        <inputEntry id="UnaryTests_199rv91">
+          <text>"LUX"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1tdkyar">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0vnjai5">
+        <inputEntry id="UnaryTests_1d6fdvm">
+          <text>"MYS"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_139q9sl">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_04l1j1q">
+        <inputEntry id="UnaryTests_14dkz8f">
+          <text>"MLT"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0si2npp">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_009wjid">
+        <inputEntry id="UnaryTests_14n36uc">
+          <text>"MAR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ava88q">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01i8ujt">
+        <inputEntry id="UnaryTests_0aua14u">
+          <text>"MEX"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_18vm60b">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0p4yav7">
+        <inputEntry id="UnaryTests_1voyp7v">
+          <text>"MDA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1sa3cjk">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_098y50h">
+        <inputEntry id="UnaryTests_0mc25qp">
+          <text>"MNE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ez0ow8">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1j1zl7i">
+        <inputEntry id="UnaryTests_0qfzcf6">
+          <text>"NZL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ya9ez3">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0omu0km">
+        <inputEntry id="UnaryTests_0vgdekr">
+          <text>"NGA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1u1lo8g">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1vcaq87">
+        <inputEntry id="UnaryTests_1uv2tja">
+          <text>"MKD"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0llxylz">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10kzywi">
+        <inputEntry id="UnaryTests_1afrupj">
+          <text>"NOR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0g3csmf">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0tv77fy">
+        <inputEntry id="UnaryTests_16466tp">
+          <text>"UKR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jd1rv5">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1jwlfwo">
+        <inputEntry id="UnaryTests_1yaagy3">
+          <text>"UZB"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0becsve">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06whiue">
+        <inputEntry id="UnaryTests_0qfue2i">
+          <text>"OMN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hul8lb">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1kylh7i">
+        <inputEntry id="UnaryTests_0uj6quy">
+          <text>"AUT"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dmh6cu">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0z7452i">
+        <inputEntry id="UnaryTests_1wefxk9">
+          <text>"PAK"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1kq3xiq">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1e87f3t">
+        <inputEntry id="UnaryTests_1ox9c56">
+          <text>"PAN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1oygg7z">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1fiiguz">
+        <inputEntry id="UnaryTests_09zu2ry">
+          <text>"POL"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08rkn0i">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05rzw2j">
+        <inputEntry id="UnaryTests_00ze6ma">
+          <text>"PRT"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1d28ryh">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1owsfdh">
+        <inputEntry id="UnaryTests_0sc89xw">
+          <text>"QAT"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ppofue">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07zbzh7">
+        <inputEntry id="UnaryTests_01agy2m">
+          <text>"ROU"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1e2aeky">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_11hp3u7">
+        <inputEntry id="UnaryTests_1wubvd7">
+          <text>"SAU"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05f2x5o">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0x1tefi">
+        <inputEntry id="UnaryTests_1gsg5u4">
+          <text>"SRB"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03szss4">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0a3l95u">
+        <inputEntry id="UnaryTests_1yrdduc">
+          <text>"SGP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0i29xwd">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0mzeegw">
+        <inputEntry id="UnaryTests_12lpj88">
+          <text>"SVK"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17rt304">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0cj1mkn">
+        <inputEntry id="UnaryTests_11bt9r3">
+          <text>"SVN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1k6b6j7">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1xhr1ce">
+        <inputEntry id="UnaryTests_0o0anbq">
+          <text>"ESP"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fc2wci">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_019w98s">
+        <inputEntry id="UnaryTests_15pz3vr">
+          <text>"LKA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_12mzgw9">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1l8w00x">
+        <inputEntry id="UnaryTests_1ie23k1">
+          <text>"SUR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0p4rdyw">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_153dyn7">
+        <inputEntry id="UnaryTests_02ldxm3">
+          <text>"TWN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1s4dc8n">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1509w8o">
+        <inputEntry id="UnaryTests_0y2ukc3">
+          <text>"THA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03yp64q">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rca6w9">
+        <inputEntry id="UnaryTests_1dhk0vf">
+          <text>"CZE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ry0ruq">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0yl3rt7">
+        <inputEntry id="UnaryTests_0isa6dw">
+          <text>"TUN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0v9pp9n">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_16qo4zz">
+        <inputEntry id="UnaryTests_0yq2cz4">
+          <text>"TUR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ga2o1h">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rj2ksz">
+        <inputEntry id="UnaryTests_1ty99e1">
+          <text>"UGA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1vr8fpl">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1g7njds">
+        <inputEntry id="UnaryTests_035frq6">
+          <text>"VEN"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09yd7y9">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0r720vb">
+        <inputEntry id="UnaryTests_19flm8s">
+          <text>"GBR"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0339nds">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1du4xpi">
+        <inputEntry id="UnaryTests_06eosgd">
+          <text>"ARE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05y4dfd">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cdug5l">
+        <inputEntry id="UnaryTests_13ykbu5">
+          <text>"USA"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_19u58uu">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0unqz87">
+        <inputEntry id="UnaryTests_1f5yzxv">
+          <text>"VNM"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zneypp">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_13u8f22">
+        <inputEntry id="UnaryTests_14d8pnh">
+          <text>"ZMB"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1la1et0">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0n156bd">
+        <inputEntry id="UnaryTests_0a9qrn4">
+          <text>"ZWE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0a1cfjm">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03edp3d">
+        <inputEntry id="UnaryTests_021xpkg">
+          <text>"ZAF"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1t5ix48">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10atnf6">
+        <inputEntry id="UnaryTests_05pmbxt">
+          <text>"SWE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_02oksbw">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03b5xkl">
+        <inputEntry id="UnaryTests_1h8zxgk">
+          <text>"CHE"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11cqf7n">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1lbhx9l">
+        <inputEntry id="UnaryTests_09bcepj">
+          <text>not("ALB","DZA","AND","ARG","ARM","AUS","AZE","BHR","BGD","BRB","BLR","BEL","BIH","BRA","BGR","CAN","CHL","CYP","DNK","DEU","EGY","EST","ETH","PHL","FIN","FRA","GEO","GHA","GRC","HKG","HUN","IRL","ISL","IND","IDN","IRQ","ISR","ITA","JOR","KAZ","KWT","UNK","KOR","HRV","LIE","LVA","LTU","LUX","MYS","MLT","MAR","MEX","MDA","MNE","NZL","NGA","MKD","NOR","UKR","UZB","OMN","AUT","PAK","PAN","POL","PRT","QAT","ROU","SAU","SRB","SGP","SVK","SVN","ESP","LKA","SUR","TWN","THA","CZE","TUN","TUR","UGA","VEN","GBR","ARE","USA","VNM","ZMB","ZWE","ZAF","SWE","CHE")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16k9rci">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0wt0tbn" name="rResidence" />
+  <textAnnotation id="TextAnnotation_0uzigfg" />
+  <association id="Association_1o0n5t7">
+    <sourceRef href="#TextAnnotation_0uzigfg" />
+    <targetRef href="#simplified_recipient_resident_treaty_check" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="simplified_recipient_resident_treaty_check">
+        <dc:Bounds height="80" width="180" x="160" y="210" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0j819lk" dmnElementRef="InputData_0wt0tbn">
+        <dc:Bounds height="45" width="125" x="187" y="447" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_19l7dbi" dmnElementRef="InformationRequirement_14p8r3o">
+        <di:waypoint x="250" y="447" />
+        <di:waypoint x="250" y="310" />
+        <di:waypoint x="250" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_10ufr1w" dmnElementRef="TextAnnotation_0uzigfg">
+        <dc:Bounds height="80" width="100" x="340" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0x2yspy" dmnElementRef="Association_1o0n5t7">
+        <di:waypoint x="347" y="160" />
+        <di:waypoint x="293" y="210" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
